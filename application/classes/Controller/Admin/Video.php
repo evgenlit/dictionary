@@ -31,7 +31,6 @@ class Controller_Admin_Video extends Controller_Admin {
                 $video->validationRequired(false);
                 $video->setFile($result);
 				$video->description = NULL;
-				$video->person_id = NULL;
                 $video->save();
                 $this->setData(array(
                    'id' => $video->getId() 

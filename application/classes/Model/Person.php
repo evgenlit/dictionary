@@ -3,6 +3,12 @@
 class Model_Person extends ORM {
 	
 	protected $_table_name = 'persons';
+	protected $has_many = array(
+		'videos' => array(
+			'model'		=> 'videos',
+			'through'	=> 'persons_videos'
+		)
+	);
 	
     public function rules() {
 		if ($this->_validationRequired) {

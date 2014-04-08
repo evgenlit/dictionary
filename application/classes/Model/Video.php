@@ -2,6 +2,14 @@
 
 class Model_Video extends ORM {
 	
+	protected $_table_name = 'videos';
+	protected $has_many = array(
+		'persons' => array(
+			'model'		=> 'persons',
+			'through'	=> 'persons_videos'
+		)
+	);
+	
     public function rules() {
 		if ($this->_validationRequired) {
             return array(
