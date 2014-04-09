@@ -34,6 +34,10 @@
 
                 <label for="years">Годы жизни</label>
                 <input type='text' name='years' id='years'/>
+                
+                <label for="file">Загрузить фото</label>
+                <input type="file" id="file" name="file">
+                <div id="deBag"></div>
 
                 <label for="description">Биография</label>
                 <textarea class="ckeditor" name="description" id="description">
