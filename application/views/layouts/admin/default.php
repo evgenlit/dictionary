@@ -14,7 +14,6 @@
             <link rel="stylesheet" href="/res/foundation/js/vendor/jquery-ui/css/redmond/jquery-ui-1.10.2.custom.min.css" />
 
             <!--script src="/res/foundation/js/vendor/jquery.js"></script-->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
 			<script src="/res/foundation/js/vendor/jquery-1.9.1.min.js"></script>
 			<script src="/res/foundation/js/vendor/jquery-1.11.0.js"></script>
             <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>

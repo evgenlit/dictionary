@@ -1,8 +1,8 @@
 <?php
 
-class Model_Video extends ORM {
+class Model_Photo extends ORM {
 	
-	protected $_table_name = 'videos';
+	protected $_table_name = 'photos';
 	protected $_belongs_to = array(
 		'person' => array(
 			'model'			=> 'person',
@@ -42,7 +42,7 @@ class Model_Video extends ORM {
                 $ext = end($fname);
                 $name = md5(rand(1, rand(100, 700)));
 
-                $new_path = DOCROOT . "res/upload/videos/" . $name . '.' . $ext;
+                $new_path = DOCROOT . "res/upload/photos/" . $name . '.' . $ext;
                 move_uploaded_file($_FILES["file"]["tmp_name"], $new_path);
                 return $new_path;
             } else {

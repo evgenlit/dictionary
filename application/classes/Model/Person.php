@@ -3,10 +3,14 @@
 class Model_Person extends ORM {
 	
 	protected $_table_name = 'persons';
-	protected $has_many = array(
+	protected $_has_many = array(
 		'videos' => array(
-			'model'		=> 'videos',
-			'through'	=> 'persons_videos'
+			'model'			=> 'video',
+			'foreign_key'	=> 'person_id'
+		),
+		'photos' => array(
+			'model'			=> 'photo',
+			'foreign_key'	=> 'person_id'
 		)
 	);
 	
@@ -29,6 +33,10 @@ class Model_Person extends ORM {
 		
 		return array();
     }
+	
+	public function load() {
+		
+	}
 	
 }
 

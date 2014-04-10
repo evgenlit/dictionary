@@ -37,6 +37,18 @@ class Controller_Admin_Person extends Controller_Admin {
             $person->loadValues($data);
             try {
                 $person->save();
+				$last_insert_id = $person->pk();
+				if ($_FILES) {
+		            $photo = ORM::factory('Photo');
+		            $result = $photo->upload();
+		            if ($result !== false){
+		                $photo->validationRequired(false);
+		                $photo->setPath($result);
+						$photo->setPerson_id($last_insert_id);
+						$photo->description = 'Портрет';
+		                $photo->save();
+		            }
+		        }
                 $data['success'] = 'Новая запись добавлена!';
             }  catch (ORM_Validation_Exception $e) {
                 $data['errors'] = $e->errors('validation', 'ru');  
