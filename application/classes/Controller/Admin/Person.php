@@ -44,7 +44,7 @@ class Controller_Admin_Person extends Controller_Admin {
 		            if ($result !== false){
 		                $photo->validationRequired(false);
 		                $photo->setPath($result);
-						$photo->setPerson_id($last_insert_id);
+						$photo->setPersonId($last_insert_id);
 						$photo->description = 'Портрет';
 		                $photo->save();
 		            }

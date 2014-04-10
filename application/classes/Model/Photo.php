@@ -52,5 +52,13 @@ class Model_Photo extends ORM {
 
         return false;
     }
+	
+	public function setPersonId($id) {
+		if($id != NULL) {
+			$this->person_id = null;
+		} else {
+			$this->person_id = $id;
+		}
+	}
 }
 
