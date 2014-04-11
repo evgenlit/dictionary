@@ -34,8 +34,13 @@ class Model_Person extends ORM {
 		return array();
     }
 	
-	public function load() {
-		
+	public function getPhotoName($id) {
+		$array = array(
+			'person_id'	=> $id,
+			'main'		=> 1
+		);
+		$photo = ORM::factory('Photo', $array);
+		return $photo->name;
 	}
 	
 }

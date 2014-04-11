@@ -38,13 +38,16 @@ class Model_Photo extends ORM {
             }
 
             if (is_uploaded_file($_FILES["file"]["tmp_name"])) {
+            	$data = array();
                 $fname = explode(".", $_FILES["file"]["name"]);
                 $ext = end($fname);
                 $name = md5(rand(1, rand(100, 700)));
 
                 $new_path = DOCROOT . "res/upload/photos/" . $name . '.' . $ext;
                 move_uploaded_file($_FILES["file"]["tmp_name"], $new_path);
-                return $new_path;
+				$data['new_path'] = $new_path;
+				$data['name'] = $name.'.'.$ext;
+                return $data;
             } else {
                 return false;
             }
@@ -54,7 +57,7 @@ class Model_Photo extends ORM {
     }
 	
 	public function setPersonId($id) {
-		if($id != NULL) {
+		if(!isset($id)) {
 			$this->person_id = null;
 		} else {
 			$this->person_id = $id;

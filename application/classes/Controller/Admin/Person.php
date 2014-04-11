@@ -38,14 +38,17 @@ class Controller_Admin_Person extends Controller_Admin {
             try {
                 $person->save();
 				$last_insert_id = $person->pk();
+			//	echo $last_insert_id; die;
 				if ($_FILES) {
 		            $photo = ORM::factory('Photo');
 		            $result = $photo->upload();
 		            if ($result !== false){
 		                $photo->validationRequired(false);
-		                $photo->setPath($result);
+		                $photo->setPath($result['new_path']);
+						$photo->setName($result['name']);
 						$photo->setPersonId($last_insert_id);
-						$photo->description = 'Портрет';
+						$photo->setDescription('Портрет');
+						$photo->setMain(1);
 		                $photo->save();
 		            }
 		        }
