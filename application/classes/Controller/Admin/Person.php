@@ -61,8 +61,25 @@ class Controller_Admin_Person extends Controller_Admin {
         $this->render();
     }
 
-	public function delete($id) {
-		$person = ORM::factory('Person');
+	public function action_delete() {
+		$id = $this->request->param('p1');
+		if (null == $id) {
+			throw new Exception('Не указан идентификатор персоналии.');
+		}
+		$db = Database::instance();
+		$db->begin();
+
+		try {
+			$person = ORM::factory('Person')->where('id', '=', $id)->find();
+			foreach ($person->photos->find_all() as $photo) {
+				$person->remove('photos', $photo);
+			}
+			$db->commit();
+			$this->redirect('/admin/person/index');
+		} catch(Database_Exception $e) {
+			$db->rollback();
+		}
+		
 	}
 
 }

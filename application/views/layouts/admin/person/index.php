@@ -31,7 +31,7 @@
 	                    </td>
 	                    <td>
 	                        <a 
-	                            href="/admin/person/edit/<?=$person->getId()?>"
+	                            href="/admin/person/edit/<?= $person->getId() ?>"
 	                            class="small button"
 	                            style="margin-bottom:-3px;"
 	                        >
@@ -39,13 +39,8 @@
 	                        </a>
 	                    </td>
 	                    <td>
-	                        <a 
-	                            href="/admin/person/delete/<?=$person->getId()?>"
-	                            class="small button"
-	                            style="margin-bottom:-3px;"
-	                        >
-	                            Удалить
-	                        </a>
+							<?= HTML::anchor('/admin/person/delete/' . $person->getId(), 'Удалить'); ?>
+							
 	                    </td>
 	                </tr>
 	            <?php endforeach; ?>
