@@ -9,6 +9,7 @@
 	                <th>Годы жизни</th>
 	                <th>Изображение</th>
 	                <th></th>
+	                <th></th>
 	            </tr>
 	        </thead>
 	        <tbody>
@@ -35,6 +36,15 @@
 	                            style="margin-bottom:-3px;"
 	                        >
 	                            Редактировать 
+	                        </a>
+	                    </td>
+	                    <td>
+	                        <a 
+	                            href="/admin/person/delete/<?=$person->getId()?>"
+	                            class="small button"
+	                            style="margin-bottom:-3px;"
+	                        >
+	                            Удалить
 	                        </a>
 	                    </td>
 	                </tr>

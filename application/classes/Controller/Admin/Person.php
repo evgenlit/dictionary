@@ -61,4 +61,8 @@ class Controller_Admin_Person extends Controller_Admin {
         $this->render();
     }
 
+	public function delete($id) {
+		$person = ORM::factory('Person');
+	}
+
 }
