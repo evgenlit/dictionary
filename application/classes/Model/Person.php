@@ -5,11 +5,11 @@ class Model_Person extends ORM {
 	protected $_table_name = 'persons';
 	protected $_has_many = array(
 		'videos' => array(
-			'model'			=> 'video',
+			'model'			=> 'Video',
 			'foreign_key'	=> 'person_id'
 		),
 		'photos' => array(
-			'model'			=> 'photo',
+			'model'			=> 'Photo',
 			'foreign_key'	=> 'person_id'
 		)
 	);

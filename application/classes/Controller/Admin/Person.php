@@ -70,10 +70,11 @@ class Controller_Admin_Person extends Controller_Admin {
 		$db->begin();
 
 		try {
-			$person = ORM::factory('Person')->where('id', '=', $id)->find();
+			$person = ORM::factory('Person', $id);
 			foreach ($person->photos->find_all() as $photo) {
-				$person->remove('photos', $photo);
+				$photo->delete();
 			}
+			$person->delete();
 			$db->commit();
 			$this->redirect('/admin/person/index');
 		} catch(Database_Exception $e) {

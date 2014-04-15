@@ -5,7 +5,7 @@ class Model_Video extends ORM {
 	protected $_table_name = 'videos';
 	protected $_belongs_to = array(
 		'person' => array(
-			'model'			=> 'person',
+			'model'			=> 'Person',
 			'foreign_key'	=> 'person_id'
 		)
 	);

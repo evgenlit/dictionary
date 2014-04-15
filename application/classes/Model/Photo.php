@@ -5,7 +5,7 @@ class Model_Photo extends ORM {
 	protected $_table_name = 'photos';
 	protected $_belongs_to = array(
 		'person' => array(
-			'model'			=> 'person',
+			'model'			=> 'Person',
 			'foreign_key'	=> 'person_id'
 		)
 	);
