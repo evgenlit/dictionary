@@ -33,20 +33,21 @@
                 <input type='text' name='name' id='name' value="<?= $person->getName() ?>"/>
 
                 <label for="years">Годы жизни</label>
-                <input type='text' name='years' id='years'/>
+                <input type='text' name='years' id='years' value="<?= $person->getYears() ?>"/>
                 
                 <label for="file">Загрузить фото</label>
-                <input type="file" name="file" id="file"/>
+                <input type="file" name="file" id="file" accept="image/*"/>
 				
                 <label for="description">Биография</label>
                 <textarea class="ckeditor" name="description" id="description">
+					<?= $person->getDescription() ?>
                 </textarea>
 
                 <input 
                     type='submit' 
                     style="margin-top: 20px" 
                     class='small button' 
-                    value='Добавить'
+                    value='Сохранить изменения'
                 />
             </fieldset>
         </form>

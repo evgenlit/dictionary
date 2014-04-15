@@ -78,25 +78,45 @@ class Controller_Admin_Person extends Controller_Admin {
         $this->template->scripts[]
                 = '/res/etc/ckeditor/lang/ru.js';
 				
-		$person = ORM::factory();
 		$id = $this->request->param('p1');
 		if (null == $id) {
 			throw new Exception('Не указан идентификатор персоналии.');
 		}
-		$db = Database::instance();
-		$db->begin();
+		$data = array();
+		$person = ORM::factory('Person', $id);
 
-		try {
-			$person = ORM::factory('Person', $id);
-			foreach ($person->photos->find_all() as $photo) {
-				$photo->delete();
-			}
-			$person->delete();
-			$db->commit();
-			$this->redirect('/admin/person/index');
-		} catch(Database_Exception $e) {
-			$db->rollback();
+		$data['person'] = $person;
+		$this->setData($data);
+		
+		if ($_POST) {
+            $data = $this->getPost();
+            $person = ORM::factory('Person');
+            $person->loadValues($data);
+            try {
+                $person->save();
+				$last_insert_id = $person->pk();
+			//	echo $last_insert_id; die;
+				if ($_FILES) {
+		            $photo = ORM::factory('Photo');
+		            $result = $photo->upload();
+		            if ($result !== false){
+		                $photo->validationRequired(false);
+		                $photo->setPath($result['new_path']);
+						$photo->setName($result['name']);
+						$photo->setPersonId($last_insert_id);
+						$photo->setDescription('Портрет');
+						$photo->setMain(1);
+		                $photo->save();
+		            }
+		        }
+                $data['success'] = 'Новая запись добавлена!';
+            }  catch (ORM_Validation_Exception $e) {
+                $data['errors'] = $e->errors('validation', 'ru');  
+            }
 		}
+		
+		$this->render();
+		
 		
 	}
 

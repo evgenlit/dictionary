@@ -23,7 +23,7 @@
             <script src="/res/foundation/js/vendor/jquery-ui/js/jquery.ui.datepicker-ru.js"></script>
 			
 
-            <!-- Дополнительные стили и скрипты, которые грузятся исходя из странцы -->
+            <!-- Дополнительные стили и скрипты, которые грузятся исходя из страницы -->
             <?php if (isset($styles)): ?>
                 <?php foreach ($styles as $style): ?>
                     <?php echo HTML::style($style); ?>
