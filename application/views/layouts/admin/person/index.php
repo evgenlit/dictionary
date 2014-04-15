@@ -30,17 +30,10 @@
 	                    	/>
 	                    </td>
 	                    <td>
-	                        <a 
-	                            href="/admin/person/edit/<?= $person->getId() ?>"
-	                            class="small button"
-	                            style="margin-bottom:-3px;"
-	                        >
-	                            Редактировать 
-	                        </a>
+	                        <?= HTML::anchor('/admin/person/edit/' . $person->getId(), 'Редактировать'); ?>
 	                    </td>
 	                    <td>
 							<?= HTML::anchor('/admin/person/delete/' . $person->getId(), 'Удалить'); ?>
-							
 	                    </td>
 	                </tr>
 	            <?php endforeach; ?>

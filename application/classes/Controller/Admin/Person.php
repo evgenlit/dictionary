@@ -61,6 +61,45 @@ class Controller_Admin_Person extends Controller_Admin {
         $this->render();
     }
 
+	public function action_edit() {
+		$this->template->scripts[]
+                = '/res/etc/ckeditor/ckeditor.js';
+        $this->template->scripts[]
+                = '/res/etc/ckeditor/config.js';
+        $this->template->scripts[]
+                = '/res/etc/ckeditor/lang/ru.js';
+
+        $this->template->scripts[]
+                = '/res/etc/ng/ng_lite.js';
+
+        $this->template->scripts[]
+                = '/res/etc/ng/timepicker_lite.js';
+
+        $this->template->scripts[]
+                = '/res/etc/ckeditor/lang/ru.js';
+				
+		$person = ORM::factory();
+		$id = $this->request->param('p1');
+		if (null == $id) {
+			throw new Exception('Не указан идентификатор персоналии.');
+		}
+		$db = Database::instance();
+		$db->begin();
+
+		try {
+			$person = ORM::factory('Person', $id);
+			foreach ($person->photos->find_all() as $photo) {
+				$photo->delete();
+			}
+			$person->delete();
+			$db->commit();
+			$this->redirect('/admin/person/index');
+		} catch(Database_Exception $e) {
+			$db->rollback();
+		}
+		
+	}
+
 	public function action_delete() {
 		$id = $this->request->param('p1');
 		if (null == $id) {
