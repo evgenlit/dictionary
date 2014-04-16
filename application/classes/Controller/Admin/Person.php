@@ -84,9 +84,6 @@ class Controller_Admin_Person extends Controller_Admin {
 		}
 		$data = array();
 		$person = ORM::factory('Person', $id);
-
-		$data['person'] = $person;
-		$this->setData($data);
 		
 		if ($_POST) {
             $data = $this->getPost();
@@ -109,12 +106,14 @@ class Controller_Admin_Person extends Controller_Admin {
 		                $photo->save();
 		            }
 		        }
-                $data['success'] = 'Новая запись добавлена!';
+                $data['success'] = 'Запись изменена!';
             }  catch (ORM_Validation_Exception $e) {
                 $data['errors'] = $e->errors('validation', 'ru');  
             }
 		}
 		
+		$data['person'] = $person;
+		$this->setData($data);
 		$this->render();
 		
 		

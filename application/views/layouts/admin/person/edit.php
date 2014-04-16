@@ -1,4 +1,3 @@
-<h3>Редактирование персоналии</h3>
 <div class="row">
     <div class='small-4 large-4 columns'>
         <?php if (isset($errors)): ?>
@@ -20,12 +19,22 @@
         <?php endif; ?>
     </div>    
 </div>
-<style>
-    table {
-        border: 0px !important;
-    }
-</style>
-<div class="row">
+<h3><?= $person->getName() ?></h3>
+<div class="section-container auto" data-section>
+  <section class="active">
+    <p class="title" data-section-title><a href="#panel1">Section 1</a></p>
+    <div class="content" data-section-content>
+      <p>Content of section 1.</p>
+    </div>
+  </section>
+  <section>
+    <p class="title" data-section-title><a href="#panel2">Section 2</a></p>
+    <div class="content" data-section-content>
+      <p>Content of section 2.</p>
+    </div>
+  </section>
+</div>
+<!--div class="row">
     <div class='small-8 large-8 columns'>
         <form class='custom' method="POST" enctype="multipart/form-data" id="post_add" name="post_add">
             <fieldset>
@@ -35,7 +44,9 @@
                 <label for="years">Годы жизни</label>
                 <input type='text' name='years' id='years' value="<?= $person->getYears() ?>"/>
                 
-                <label for="file">Загрузить фото</label>
+                <?= HTML::image('/res/upload/photos/' . $person->getPhotoName($person->getId())) ?>
+                
+                <label for="file">Изменить фото</label>
                 <input type="file" name="file" id="file" accept="image/*"/>
 				
                 <label for="description">Биография</label>
@@ -52,4 +63,4 @@
             </fieldset>
         </form>
     </div>
-</div>
+</div-->
