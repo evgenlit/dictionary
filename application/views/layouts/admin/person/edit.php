@@ -21,43 +21,53 @@
 </div>
 <h3><?= $person->getName() ?></h3>
 <div class="section-container auto" data-section>
-  <section class="active">
-    <p class="title" data-section-title><a href="#personal">Биографические данные</a></p>
-    <div class="content" data-section-content>
-        <form class='custom' method="POST" enctype="multipart/form-data" id="post_add" name="post_add" width="100px">
-            <fieldset>
-                <label for="name">ФИО (полностью)</label>
-                <input type='text' name='name' id='name' value="<?= $person->getName() ?>"/>
-
-                <label for="years">Годы жизни</label>
-                <input type='text' name='years' id='years' value="<?= $person->getYears() ?>"/>
-                
-                <?= HTML::image('/res/upload/photos/' . $person->getPhotoName($person->getId())) ?>
-                
-                <label for="file">Изменить фото</label>
-                <input type="file" name="file" id="file" accept="image/*"/>
+<section class="active">
+	<p class="title" data-section-title>
+		<a href="#personal">Биографические данные</a>
+	</p>
+	<div class="content" data-section-content>
+		<form class='custom' method="POST" enctype="multipart/form-data" id="post_add" name="post_add" width="100px">
+			<fieldset>
+				<label for="name" id="formlabel">ФИО (полностью)</label>
+				<input type='text' name='name' id='name' value="<?= $person->getName() ?>"/>
 				
-                <label for="description">Биография</label>
-                <textarea class="ckeditor" name="description" id="description">
+				<label for="years" id="formlabel">Годы жизни</label>
+				<input type='text' name='years' id='years' value="<?= $person->getYears() ?>"/>
+				
+				<label for="description" id="formlabel">Биография</label>
+				<textarea class="ckeditor" name="description" id="description">
 					<?= $person->getDescription() ?>
-                </textarea>
-
-                <input 
-                    type='submit' 
-                    style="margin-top: 20px" 
-                    class='small button' 
-                    value='Сохранить изменения'
-                />
-            </fieldset>
-        </form>
-    </div>
-  </section>
-  <section>
-    <p class="title" data-section-title><a href="#panel2">Section 2</a></p>
-    <div class="content" data-section-content>
-      <p>Content of section 2.</p>
-    </div>
-  </section>
+				</textarea>
+				<input 
+					type='submit' 
+					style="margin-top: 20px" 
+					class='small button' 
+					value='Сохранить изменения'
+				/>
+			</fieldset>
+		</form>
+	</div>
+</section>
+<section>
+	<p class="title" data-section-title>
+		<a href="#photo">Фото</a>
+	</p>
+	<div class="content" data-section-content>
+		<p>
+			<?= HTML::image('/res/upload/photos/' . $person->getPhotoName($person->getId())) ?>
+		</p>
+		<label for="file" id="formlabel">Выбрать другое фото</label>
+		<input type="file" name="file" id="file" accept="image/*"/>
+	</div>
+</section>
+<section>
+	<p class="title" data-section-title>
+		<a href="#video">Видео</a>
+	</p>
+	<div class="content" data-section-content>
+		<p>Content of section 2.</p>
+	</div>
+</section>
 </div>
 <!--div class="row">
     <div class='small-8 large-8 columns'>
