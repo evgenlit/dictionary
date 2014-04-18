@@ -34,30 +34,43 @@
 				<label for="years" id="formlabel">Годы жизни</label>
 				<input type='text' name='years' id='years' value="<?= $person->getYears() ?>"/>
 				
-				<label for="description" id="formlabel">Биография</label>
-				<textarea class="ckeditor" name="description" id="description">
-					<?= $person->getDescription() ?>
+				<label for="epigraph" id="epigraph">Эпиграф</label>
+				<textarea class="epigraph" name="epigraph" id="epigraph">
+					<? ?>
 				</textarea>
-				<input 
+				<!--input 
 					type='submit' 
 					style="margin-top: 20px" 
 					class='small button' 
 					value='Сохранить изменения'
-				/>
+				/-->
 			</fieldset>
 		</form>
 	</div>
 </section>
 <section>
 	<p class="title" data-section-title>
-		<a href="#photo">Фото</a>
+		<a href="#photo">Фотогалерея</a>
 	</p>
 	<div class="content" data-section-content>
+		<p style="font-size: 18px;">
+			Главное фото
+		</p>
 		<p>
 			<?= HTML::image('/res/upload/photos/' . $person->getPhotoName($person->getId())) ?>
 		</p>
 		<label for="file" id="formlabel">Выбрать другое фото</label>
 		<input type="file" name="file" id="file" accept="image/*"/>
+	</div>
+</section>
+<section>
+	<p class="title" data-section-title>
+		<a href="#life">Очерк жизни</a>
+	</p>
+	<div class="content" data-section-content>
+		<textarea class="ckeditor" name="description" id="description">
+			<?= $person->getDescription() ?>
+		</textarea>
 	</div>
 </section>
 <section>
