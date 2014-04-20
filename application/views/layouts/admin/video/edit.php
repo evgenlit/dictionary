@@ -24,13 +24,7 @@
                     <?= $video->getPath() ?>
                 </td>
                 <td>
-                    <a 
-                        href="/admin/person/edit/<?=$person->getId()?>"
-                        class="small button"
-                        style="margin-bottom:-3px;"
-                    >
-                        Редактировать 
-                    </a>
+                    <?= HTML::anchor('/admin/video/edit/' . $video->getId(), 'Редактировать'); ?>
                 </td>
             </tr>
         </tbody>

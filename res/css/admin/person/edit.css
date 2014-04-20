@@ -13,3 +13,7 @@ table {
 fieldset {
 	border: solid 1px #FFFDFD;
 }
+
+form#post_add.custom{
+	width: 800px;
+}

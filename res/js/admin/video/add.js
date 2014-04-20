@@ -28,7 +28,7 @@ function sendFileToServer(formData,status)
         success: function(data){
             status.setProgress(100);
             var parsed = $.parseJSON(data);
-            window.location = '/admin/video/edit/' + parsed.id;       
+            window.location = '/admin/video/';       
         }
     }); 
  

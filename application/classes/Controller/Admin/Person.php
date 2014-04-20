@@ -15,6 +15,7 @@ class Controller_Admin_Person extends Controller_Admin {
     }
 
     public function action_add() {
+/*
 		$this->template->scripts[]
                 = '/res/etc/ckeditor/ckeditor.js';
         $this->template->scripts[]
@@ -30,6 +31,7 @@ class Controller_Admin_Person extends Controller_Admin {
 
         $this->template->scripts[]
                 = '/res/etc/ckeditor/lang/ru.js';
+ */
         $data = array();
         if ($_POST) {
             $data = $this->getPost();
@@ -64,20 +66,10 @@ class Controller_Admin_Person extends Controller_Admin {
 	public function action_edit() {
 		$this->template->scripts[]
                 = '/res/etc/ckeditor/ckeditor.js';
-        $this->template->scripts[]
+		$this->template->scripts[]
                 = '/res/etc/ckeditor/config.js';
         $this->template->scripts[]
                 = '/res/etc/ckeditor/lang/ru.js';
-
-        $this->template->scripts[]
-                = '/res/etc/ng/ng_lite.js';
-
-        $this->template->scripts[]
-                = '/res/etc/ng/timepicker_lite.js';
-
-        $this->template->scripts[]
-                = '/res/etc/ckeditor/lang/ru.js';
-				
 		$id = $this->request->param('p1');
 		if (null == $id) {
 			throw new Exception('Не указан идентификатор персоналии.');

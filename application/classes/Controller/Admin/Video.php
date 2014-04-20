@@ -5,6 +5,11 @@ defined('SYSPATH') or die('No direct script access.');
 class Controller_Admin_Video extends Controller_Admin {
 
     public function action_index() {
+        $data = array();
+		$videos = ORM::factory('Video')->find_all();
+		$data['videos'] = $videos;
+		
+		$this->setData($data);
         $this->render();
     }
 
