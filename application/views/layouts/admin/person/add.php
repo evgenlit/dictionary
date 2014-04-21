@@ -39,8 +39,7 @@
                 <input type="file" name="file" id="file"/>
 				
                 <label for="description">Биография</label>
-                <textarea class="ckeditor" name="description" id="description">
-                </textarea>
+                <textarea class="ckeditor" name="description" id="description"></textarea>
 
                 <input 
                     type='submit' 

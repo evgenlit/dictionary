@@ -7,6 +7,7 @@
                 <th>Название</th>
                 <th>Что-то еще</th>
                 <th></th>
+				<th></th>
             </tr>
         </thead>
         <tbody>
