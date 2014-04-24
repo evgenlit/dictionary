@@ -7,35 +7,26 @@ class Controller_Admin_Photo extends Controller_Admin {
 	private function uploads_dir() {
 		return DOCROOT . 'res/upload/photos/' . DIRECTORY_SEPARATOR;
 	}
-
-	public $template = NULL;
 	
-	public function action_view() {
-		$this->template = View::factory('files');
+	 public function action_index() {
 		
-		// initialize files array
-		$files = array();
+		$this->render();
+    }
+	
+	public function action_add() {
+		$data = array();
 		
-		// scan uploads directory and build files array
 		$uploads = new DirectoryIterator($this->uploads_dir());
-		foreach ($uploads as $file) { /** @var DirectoryIterator $file **/
+		foreach ($uploads as $file) {
 			if ($file->isFile()) {
-				$files[] = $file->getFilename();
+				$data['files'] = $file->getFilename();
 			}
 		}
-		
-		// set values to template
-		$this->template->set(array(
-			// files list
-			'files' => $files,
-			// errors from user session
-			'errors' => Session::instance()->get_once('errors', array()),
-			// message from user session
-			'message' => Session::instance()->get_once('message'),
-		));
-		
-		// render template
-		$this->response->body($this->template->render());
+		$data['errors'] = Session::instance()->get_once('errors', array());
+		$data['message'] = Session::instance()->get_once('message');
+//		var_dump($data); die;
+		$this->setData($data);
+        $this->render();
 	}
 	
 	/**
