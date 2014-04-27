@@ -48,17 +48,23 @@
 </section>
 <section>
 	<p class="title" data-section-title>
-		<a href="#photo">Фотогалерея</a>
+		<a href="#photo">Главное фото</a>
 	</p>
 	<div class="content" data-section-content>
-		<p style="font-size: 18px;">
-			Главное фото
-		</p>
-		<p>
-			<?= HTML::image('/res/upload/photos/' . $person->getPhotoName($person->getId())) ?>
-		</p>
-		<label for="file" id="formlabel">Выбрать другое фото</label>
-		<input type="file" name="file" id="file" accept="image/*"/>
+		<?php if (isset($mainPhoto)): ?>
+			<div id="mainPhoto">
+				<p>
+					<?= HTML::image('/res/upload/photos/' . $mainPhoto) ?>
+				</p>
+			</div>
+			<label for="mainfile" id="formlabel">Выбрать другое фото</label>
+			<input type="file" name="file" id="mainfile" accept="image/*" data-edit="auto" data-save='/admin/photo/changeMainPhoto/' />
+		<?php else: ?>
+			<p>
+				Фото не загружено
+			</p>
+			<input type="file" name="file" id="mainfile" accept="image/*"/>
+		<?php endif; ?>
 	</div>
 </section>
 <section>

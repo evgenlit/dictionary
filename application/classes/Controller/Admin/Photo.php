@@ -61,34 +61,38 @@ class Controller_Admin_Photo extends Controller_Admin {
 		$this->response->body($image);
 	}
 	
-	/**
-     * Upload file action
-     */
-	public function action_upload() {
-		// check request method
-		if ($this->request->method() === Request::POST) {
-			// create validation object
-			$validation = Validation::factory($_FILES)
-					->label('image', 'Picture')
-					->rules('image', array(
-						array('Upload::not_empty'),
-						array('Upload::image'),
-			));
-			
-			// check input data
-			if ($validation->check()) {
-				// process upload
-				Upload::save($validation['image'], NULL, $this->uploads_dir());
-				// set user message
-				Session::instance()->set('message', 'Image is successfully uploaded');
-			}
-			
-			// set user errors
-			Session::instance()->set('errors', $validation->errors('upload'));
+	public function changeMainPhoto($id) {
+		if (null == $id) {
+			throw new Exception('Не указан идентификатор персоналии.');
+		}
+		$db = Database::instance();
+		$db->begin();
+
+		try {
+			$data = array(
+				'person_id'	=> $id,
+				'main'		=> 1
+			);
+			$mainPhoto = ORM::factory('Photo', $data);
+			$mainPhoto->delete();
+			if ($_FILES) {
+		            $photo = ORM::factory('Photo');
+		            $result = $photo->upload();
+		            if ($result !== false){
+		                $photo->validationRequired(false);
+		                $photo->setPath($result['new_path']);
+						$photo->setName($result['name']);
+						$photo->setPersonId($id);
+						$photo->setDescription('Портрет');
+						$photo->setMain(1);
+		                $photo->save();
+		            }
+		        }
+			$db->commit();
+		} catch(Database_Exception $e) {
+			$db->rollback();
 		}
 		
-		// redirect to home page
-		$this->request->redirect('/');
 	}
 	
 }

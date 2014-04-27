@@ -63,9 +63,18 @@ class Controller_Admin_Person extends Controller_Admin {
 		if (null == $id) {
 			throw new Exception('Не указан идентификатор персоналии.');
 		}
+		$selectPhoto = array(
+			'person_id'	=> $id,
+			'main'		=> 1
+		);
 		$data = array();
 		$person = ORM::factory('Person', $id);
+		$photomain = ORM::factory('Photo', $selectPhoto);
+		if (isset($photomain)) {
+			$data['mainPhoto'] = $photomain->getName();
+		}
 		
+/*		
 		if ($_POST) {
             $data = $this->getPost();
             $person = ORM::factory('Person');
@@ -92,7 +101,7 @@ class Controller_Admin_Person extends Controller_Admin {
                 $data['errors'] = $e->errors('validation', 'ru');  
             }
 		}
-		
+*/		
 		$data['person'] = $person;
 		$this->setData($data);
 		$this->render();
