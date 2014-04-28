@@ -40,3 +40,9 @@ $(function() {
 		e.preventDefault();
 	});
 });
+$(function() {
+	$('form#addPhotoMain').live('submit', function(e) {
+		alert('Ура!');
+		e.preventDefault();
+	});
+});

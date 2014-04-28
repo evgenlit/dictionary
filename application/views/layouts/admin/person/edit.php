@@ -58,7 +58,9 @@
 				</p>
 			</div>
 			<label for="mainfile" id="formlabel">Выбрать другое фото</label>
-			<input type="file" name="file" id="mainfile" accept="image/*" data-edit="auto" data-save='/admin/photo/changeMainPhoto/' />
+			<form id="addPhotoMain" name="addphotoMain">
+				<input type="file" name="file" id="mainfile" accept="image/*" /> <input type="submit" name="uploadmain" value="Отправить" />
+			</form>
 		<?php else: ?>
 			<p>
 				Фото не загружено
