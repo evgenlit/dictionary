@@ -1,0 +1,56 @@
+<?php defined('SYSPATH') OR die('No direct script access.'); ?>
+
+2014-05-06 23:11:34 --- CRITICAL: ErrorException [ 2 ]: strpos() expects parameter 1 to be string, array given ~ SYSPATH\classes\Kohana\HTML.php [ 272 ] in file:line
+2014-05-06 23:11:34 --- DEBUG: #0 [internal function]: Kohana_Core::error_handler(2, 'strpos() expect...', 'Z:\home\diction...', 272, Array)
+#1 Z:\home\dictionary\www\system\classes\Kohana\HTML.php(272): strpos(Array, '://')
+#2 Z:\home\dictionary\www\application\views\layouts\admin\person\edit.php(57): Kohana_HTML::image(Array)
+#3 Z:\home\dictionary\www\system\classes\Kohana\View.php(61): include('Z:\home\diction...')
+#4 Z:\home\dictionary\www\system\classes\Kohana\View.php(348): Kohana_View::capture('Z:\home\diction...', Array)
+#5 Z:\home\dictionary\www\system\classes\Kohana\View.php(228): Kohana_View->render()
+#6 Z:\home\dictionary\www\application\views\layouts\admin\default.php(101): Kohana_View->__toString()
+#7 Z:\home\dictionary\www\system\classes\Kohana\View.php(61): include('Z:\home\diction...')
+#8 Z:\home\dictionary\www\system\classes\Kohana\View.php(348): Kohana_View::capture('Z:\home\diction...', Array)
+#9 Z:\home\dictionary\www\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#10 Z:\home\dictionary\www\system\classes\Kohana\Controller.php(87): Kohana_Controller_Template->after()
+#11 [internal function]: Kohana_Controller->execute()
+#12 Z:\home\dictionary\www\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Admin_Person))
+#13 Z:\home\dictionary\www\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#14 Z:\home\dictionary\www\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#15 Z:\home\dictionary\www\index.php(118): Kohana_Request->execute()
+#16 {main} in file:line
+2014-05-06 23:13:36 --- CRITICAL: ErrorException [ 2 ]: strpos() expects parameter 1 to be string, array given ~ SYSPATH\classes\Kohana\HTML.php [ 272 ] in file:line
+2014-05-06 23:13:36 --- DEBUG: #0 [internal function]: Kohana_Core::error_handler(2, 'strpos() expect...', 'Z:\home\diction...', 272, Array)
+#1 Z:\home\dictionary\www\system\classes\Kohana\HTML.php(272): strpos(Array, '://')
+#2 Z:\home\dictionary\www\application\views\layouts\admin\person\edit.php(57): Kohana_HTML::image(Array, Array)
+#3 Z:\home\dictionary\www\system\classes\Kohana\View.php(61): include('Z:\home\diction...')
+#4 Z:\home\dictionary\www\system\classes\Kohana\View.php(348): Kohana_View::capture('Z:\home\diction...', Array)
+#5 Z:\home\dictionary\www\system\classes\Kohana\View.php(228): Kohana_View->render()
+#6 Z:\home\dictionary\www\application\views\layouts\admin\default.php(101): Kohana_View->__toString()
+#7 Z:\home\dictionary\www\system\classes\Kohana\View.php(61): include('Z:\home\diction...')
+#8 Z:\home\dictionary\www\system\classes\Kohana\View.php(348): Kohana_View::capture('Z:\home\diction...', Array)
+#9 Z:\home\dictionary\www\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#10 Z:\home\dictionary\www\system\classes\Kohana\Controller.php(87): Kohana_Controller_Template->after()
+#11 [internal function]: Kohana_Controller->execute()
+#12 Z:\home\dictionary\www\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Admin_Person))
+#13 Z:\home\dictionary\www\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#14 Z:\home\dictionary\www\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#15 Z:\home\dictionary\www\index.php(118): Kohana_Request->execute()
+#16 {main} in file:line
+2014-05-06 23:22:52 --- CRITICAL: ErrorException [ 2 ]: Missing argument 1 for Controller_Admin_Photo::action_changeMainPhoto(), called in Z:\home\dictionary\www\system\classes\Kohana\Controller.php on line 84 and defined ~ APPPATH\classes\Controller\Admin\Photo.php [ 102 ] in Z:\home\dictionary\www\application\classes\Controller\Admin\Photo.php:102
+2014-05-06 23:22:52 --- DEBUG: #0 Z:\home\dictionary\www\application\classes\Controller\Admin\Photo.php(102): Kohana_Core::error_handler(2, 'Missing argumen...', 'Z:\home\diction...', 102, Array)
+#1 Z:\home\dictionary\www\system\classes\Kohana\Controller.php(84): Controller_Admin_Photo->action_changeMainPhoto()
+#2 [internal function]: Kohana_Controller->execute()
+#3 Z:\home\dictionary\www\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Admin_Photo))
+#4 Z:\home\dictionary\www\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 Z:\home\dictionary\www\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#6 Z:\home\dictionary\www\index.php(118): Kohana_Request->execute()
+#7 {main} in Z:\home\dictionary\www\application\classes\Controller\Admin\Photo.php:102
+2014-05-06 23:24:04 --- CRITICAL: ErrorException [ 2 ]: Missing argument 1 for Controller_Admin_Photo::action_changeMainPhoto(), called in Z:\home\dictionary\www\system\classes\Kohana\Controller.php on line 84 and defined ~ APPPATH\classes\Controller\Admin\Photo.php [ 102 ] in Z:\home\dictionary\www\application\classes\Controller\Admin\Photo.php:102
+2014-05-06 23:24:04 --- DEBUG: #0 Z:\home\dictionary\www\application\classes\Controller\Admin\Photo.php(102): Kohana_Core::error_handler(2, 'Missing argumen...', 'Z:\home\diction...', 102, Array)
+#1 Z:\home\dictionary\www\system\classes\Kohana\Controller.php(84): Controller_Admin_Photo->action_changeMainPhoto()
+#2 [internal function]: Kohana_Controller->execute()
+#3 Z:\home\dictionary\www\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Admin_Photo))
+#4 Z:\home\dictionary\www\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 Z:\home\dictionary\www\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#6 Z:\home\dictionary\www\index.php(118): Kohana_Request->execute()
+#7 {main} in Z:\home\dictionary\www\application\classes\Controller\Admin\Photo.php:102

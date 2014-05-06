@@ -42,7 +42,16 @@ $(function() {
 });
 $(function() {
 	$('form#addPhotoMain').live('submit', function(e) {
-		alert('Ура!');
+		var personId = $('#personId').val();
+		$.ajax({
+			type: "POST",
+			url: "/admin/photo/changeMainPhoto/"+personId,
+			data: "id=" + personId,
+			success: function(data) {
+				var parsed = $.parseJSON(data);
+				$('mainPic').attr('src', parsed.name);
+			}
+		});
 		e.preventDefault();
 	});
 });

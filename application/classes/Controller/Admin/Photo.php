@@ -99,7 +99,8 @@ class Controller_Admin_Photo extends Controller_Admin {
 		}
 	}
 	
-	public function changeMainPhoto($id) {
+	public function action_changeMainPhoto() {
+		$id = $this->request->param('p1');
 		if (null == $id) {
 			throw new Exception('Не указан идентификатор персоналии.');
 		}
@@ -107,30 +108,29 @@ class Controller_Admin_Photo extends Controller_Admin {
 		$db->begin();
 
 		try {
-			$data = array(
-				'person_id'	=> $id,
-				'main'		=> 1
-			);
-			$mainPhoto = ORM::factory('Photo', $data);
-			$mainPhoto->delete();
 			if ($_FILES) {
-		            $photo = ORM::factory('Photo');
-		            $result = $photo->upload();
-		            if ($result !== false){
-		                $photo->validationRequired(false);
-		                $photo->setPath($result['new_path']);
-						$photo->setName($result['name']);
-						$photo->setPersonId($id);
-						$photo->setDescription('Портрет');
-						$photo->setMain(1);
-		                $photo->save();
-		            }
-		        }
+				$data = array(
+					'person_id'	=> $id,
+					'main'		=> 1
+				);
+				$mainPhoto = ORM::factory('Photo', $data);
+				$mainPhoto->delete();
+				$photo = ORM::factory('Photo');
+				$result = $photo->upload();
+				if ($result !== false){
+					$photo->validationRequired(false);
+					$photo->setPath($result['new_path']);
+					$photo->setName($result['name']);
+					$photo->setPersonId($id);
+					$photo->setDescription('Портрет');
+					$photo->setMain(1);
+					$photo->save();
+				}
+			}
 			$db->commit();
 		} catch(Database_Exception $e) {
 			$db->rollback();
 		}
-		
 	}
 	
 }
