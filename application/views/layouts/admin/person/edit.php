@@ -61,7 +61,7 @@
 			<form id="addPhotoMain" name="addphotoMain">
 				<input type="hidden" name="personId" id="personId" value="<?= $person->getId() ?>"/>
 				<input type="file" name="file" id="mainfile" accept="image/*" /> <input type="submit" name="uploadmain" value="Отправить" />
-			</form>
+			</form> 
 		<?php else: ?>
 			<p>
 				Фото не загружено
