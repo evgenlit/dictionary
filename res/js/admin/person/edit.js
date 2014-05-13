@@ -58,6 +58,16 @@ $(document).ready(function(){
 		})
 		.done(function(data) {
 //			$("#mainPic").attr('src', '/res/photo/upload/'+data.name);
+			$.getJSON(
+                '/admin/photo/getAjaxMainPhoto',
+                {
+                    'id': $('#personId').val()
+                },
+                function(data) {
+                	alert(1);
+                    $("#mainPic").attr('src', '/res/photo/upload/'+data.name);
+                }
+            );
 		});
 	});
 });
