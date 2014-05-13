@@ -60,14 +60,14 @@ class Controller_Admin_Photo extends Controller_Admin {
 	}
 	
 	public function getAjaxMainPhoto() {
-		
+		$id = $this->request->param('id');
 		$data = array(
 			'person_id'	=> $id,
 			'main'		=> 1
 		);
 		$mainPhoto = ORM::factory('Photo', $data);
 		$result = $mainPhoto->getName();
-		return sendJson($result);
+		return json_encode($result);
 		
 	}
 	

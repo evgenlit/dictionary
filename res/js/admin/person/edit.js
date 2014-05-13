@@ -45,7 +45,6 @@ $(document).ready(function(){
 		event.preventDefault();
 		var data = $('form#addPhotoMain').serialize();
 		var personId = $('#personId').val();
-		alert(data.name);
 		$.ajax({
 			type: "POST",
 			url: "/admin/photo/changeMainPhoto/"+personId,
@@ -55,20 +54,17 @@ $(document).ready(function(){
 			beforeSend: function() {
 				$('#loader').show();
 			}
-		})
-		.done(function(data) {
-//			$("#mainPic").attr('src', '/res/photo/upload/'+data.name);
-			$.getJSON(
-                '/admin/photo/getAjaxMainPhoto',
-                {
-                    'id': $('#personId').val()
-                },
-                function(data) {
-                	alert(1);
-                    $("#mainPic").attr('src', '/res/photo/upload/'+data.name);
-                }
-            );
 		});
+		$.getJSON(
+			'/admin/photo/getAjaxMainPhoto',
+			{
+				'id': $('#personId').val()
+			},
+			function(data) {
+				alert(1);
+				$("#mainPic").attr('src', '/res/photo/upload/'+data.name);
+			}
+		);
 	});
 });
 /*

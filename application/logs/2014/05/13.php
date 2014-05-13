@@ -8,3 +8,6 @@
 #4 Z:\home\dictionary\www\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
 #5 Z:\home\dictionary\www\index.php(118): Kohana_Request->execute()
 #6 {main} in Z:\home\dictionary\www\system\classes\Kohana\Controller.php:84
+2014-05-13 23:51:38 --- CRITICAL: ErrorException [ 1 ]: Call to undefined method Controller_Admin_Photo::uploads_dir() ~ APPPATH\classes\Controller\Admin\Photo.php [ 15 ] in file:line
+2014-05-13 23:51:38 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
