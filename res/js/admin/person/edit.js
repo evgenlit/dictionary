@@ -40,31 +40,34 @@ $(function() {
 		e.preventDefault();
 	});
 });
+
 $(document).ready(function(){
-	$("form#addPhotoMain").submit(function (event) {
-		event.preventDefault();
-		var data = $('form#addPhotoMain').serialize();
-		var personId = $('#personId').val();
-		$.ajax({
-			type: "POST",
-			url: "/admin/photo/changeMainPhoto/"+personId,
-			data: data,
-			contentType: false,
-			processData: false,
-			beforeSend: function() {
-				$('#loader').show();
-			}
-		});
-		$.getJSON(
-			'/admin/photo/getAjaxMainPhoto',
-			{
-				'id': $('#personId').val()
-			},
-			function(data) {
-				alert(1);
-				$("#mainPic").attr('src', '/res/photo/upload/'+data.name);
-			}
-		);
+	$("form#addPhotoMain").submit(function (e) {
+		e.preventDefault();
+		var personId = $("input#personId").val();
+		var files = $('#mainfile')[0].files[0];
+//		for (var i = 0; i < files.length; i++) {
+			var fd = new FormData();
+			fd.append("file", files);
+			var uploadURL ="/admin/photo/changeMainPhoto/"+personId;
+			var jqXHR =
+			$.ajax({
+				url: uploadURL,
+				type: "POST",
+				contentType:false,
+				processData: false,
+				cache: false,
+				data: fd,
+//				dataType: "html",
+				success: 
+					function(data){
+//						alert(1);
+						var parsed = $.parseJSON(data);
+						alert(parsed);
+						$("#mainPic").attr("src", "/res/photo/upload/"+parsed.name);       
+					}
+			});
+//	   }
 	});
 });
 /*

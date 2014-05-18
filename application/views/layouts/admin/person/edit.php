@@ -58,9 +58,10 @@
 				</p>
 			</div>
 			<label for="mainfile" id="formlabel">Выбрать другое фото</label>
-			<form id="addPhotoMain" name="addphotoMain">
+			<form id="addPhotoMain" name="addphotoMain" enctype="multipart/form-data">
+				<input type="file" name="file" id="mainfile" accept="image/*"/>
 				<input type="hidden" name="personId" id="personId" value="<?= $person->getId() ?>"/>
-				<input type="file" name="file" id="mainfile" accept="image/*" /> <input type="submit" name="uploadmain" value="Отправить" />
+				<input type="submit" name="uploadmain" value="Отправить" />
 			</form> 
 		<?php else: ?>
 			<p>
