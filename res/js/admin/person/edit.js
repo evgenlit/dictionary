@@ -46,10 +46,9 @@ $(document).ready(function(){
 		e.preventDefault();
 		var personId = $("input#personId").val();
 		var files = $('#mainfile')[0].files[0];
-//		for (var i = 0; i < files.length; i++) {
 			var fd = new FormData();
 			fd.append("file", files);
-			var uploadURL ="/admin/photo/changeMainPhoto/"+personId;
+			var uploadURL ="/admin/photo/jchangeMainPhoto/"+personId;
 			var jqXHR =
 			$.ajax({
 				xhr: function() {
@@ -58,20 +57,15 @@ $(document).ready(function(){
 		        },
 				url: uploadURL,
 				type: "POST",
-				contentType:"text/javascript",
+				contentType:false,
 				processData: false,
 				cache: false,
 				data: fd,
-//				dataType: "text/image",
+				dataType: "json",
 				success: 
 					function(data){
-//						var parsed = $.parseJSON('{"name":"1c9ac0159c94d8d0cbedc973445af2da.jpg"}');
-						var parsed = $.parseJSON(data);
-						console.log(parsed);
-//						alert(parsed.id);
-						$("#mainPic").attr("src", "/res/photo/upload/"+parsed.name);       
+						$("#mainPic").attr("src", "/res/upload/photos/"+data.name);       
 					}
 			});
-//	   }
 	});
 });

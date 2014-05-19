@@ -100,3 +100,15 @@
 2014-05-19 17:17:43 --- EMERGENCY: ErrorException [ 1 ]: Call to undefined method Controller_Admin_Photo::ob_start() ~ APPPATH/classes/Controller/Admin/Photo.php [ 55 ] in file:line
 2014-05-19 17:17:43 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
 #1 {main} in file:line
+2014-05-19 23:17:24 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: res ~ APPPATH\classes\Controller\Admin\Photo.php [ 65 ] in Z:\home\dictionary\www\application\classes\Controller\Admin\Photo.php:65
+2014-05-19 23:17:24 --- DEBUG: #0 Z:\home\dictionary\www\application\classes\Controller\Admin\Photo.php(65): Kohana_Core::error_handler(8, 'Undefined varia...', 'Z:\home\diction...', 65, Array)
+#1 Z:\home\dictionary\www\system\classes\Kohana\Controller.php(84): Controller_Admin_Photo->action_changeMainPhoto()
+#2 [internal function]: Kohana_Controller->execute()
+#3 Z:\home\dictionary\www\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Admin_Photo))
+#4 Z:\home\dictionary\www\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 Z:\home\dictionary\www\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#6 Z:\home\dictionary\www\index.php(118): Kohana_Request->execute()
+#7 {main} in Z:\home\dictionary\www\application\classes\Controller\Admin\Photo.php:65
+2014-05-19 23:50:37 --- CRITICAL: ErrorException [ 1 ]: Call to a member function body() on a non-object ~ SYSPATH\classes\Kohana\Controller\Template.php [ 44 ] in file:line
+2014-05-19 23:50:37 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line

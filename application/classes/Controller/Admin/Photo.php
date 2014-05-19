@@ -25,7 +25,7 @@ class Controller_Admin_Photo extends Controller_Admin {
         $this->render();
 	}
 	
-	public function action_changeMainPhoto() {
+	public function action_jchangeMainPhoto() {
 		$id = $this->request->param('p1');
 		if (null == $id) {
 			throw new Exception('Не указан идентификатор персоналии.');
@@ -51,29 +51,17 @@ class Controller_Admin_Photo extends Controller_Admin {
 					$photo->setDescription('Портрет');
 					$photo->setMain(1);
 					$photo->save();
-					$res = array('name' => $photo->getName());
-					$this->setData(
-						json_encode($res, JSON_UNESCAPED_UNICODE)
-					);
+					$result['name'] = $photo->getName();
+					$this->setData(array(
+						'name' => $photo->getName() 
+					 ));
 				}
 			}
 			$db->commit();
 		} catch(Database_Exception $e) {
 			$db->rollback();
 		}
-//		return json_encode(array('name' => $res));
-	}
-	
-	public function getAjaxMainPhoto() {
-		$id = $this->request->param('id');
-		$data = array(
-			'person_id'	=> $id,
-			'main'		=> 1
-		);
-		$mainPhoto = ORM::factory('Photo', $data);
-		$result = $mainPhoto->getName();
-		return json_encode($result);
-		
+		$this->render();
 	}
 	
 }
