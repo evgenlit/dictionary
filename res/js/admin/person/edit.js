@@ -52,38 +52,26 @@ $(document).ready(function(){
 			var uploadURL ="/admin/photo/changeMainPhoto/"+personId;
 			var jqXHR =
 			$.ajax({
+				xhr: function() {
+		            var xhrobj = $.ajaxSettings.xhr();
+		            return xhrobj;
+		        },
 				url: uploadURL,
 				type: "POST",
-				contentType:false,
+				contentType:"text/javascript",
 				processData: false,
 				cache: false,
 				data: fd,
-//				dataType: "html",
+//				dataType: "text/image",
 				success: 
 					function(data){
-//						alert(1);
+//						var parsed = $.parseJSON('{"name":"1c9ac0159c94d8d0cbedc973445af2da.jpg"}');
 						var parsed = $.parseJSON(data);
-						alert(parsed);
+						console.log(parsed);
+//						alert(parsed.id);
 						$("#mainPic").attr("src", "/res/photo/upload/"+parsed.name);       
 					}
 			});
 //	   }
 	});
 });
-/*
-$(document).ready(function(){
-	$('form#addPhotoMain').submit(function(){
-		var personId = $('#personId').val();
-		var mainfile = $('#mainfile').val();
-		alert(mainfile);
-		$.ajax({
-			type: "POST",
-			url: "/admin/photo/changeMainPhoto/"+personId,
-			data: "personId="+personId,
-			success: function(data){
-			}
-		});
-		return false;
-	});
-});
-*/

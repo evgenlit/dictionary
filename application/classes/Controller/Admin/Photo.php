@@ -51,16 +51,17 @@ class Controller_Admin_Photo extends Controller_Admin {
 					$photo->setDescription('Портрет');
 					$photo->setMain(1);
 					$photo->save();
-					$this->setData(array(
-						'id' => $photo->getName() 
-					 ));
+					$res = array('name' => $photo->getName());
+					$this->setData(
+						json_encode($res, JSON_UNESCAPED_UNICODE)
+					);
 				}
 			}
 			$db->commit();
 		} catch(Database_Exception $e) {
 			$db->rollback();
 		}
-		$this->render();
+//		return json_encode(array('name' => $res));
 	}
 	
 	public function getAjaxMainPhoto() {
