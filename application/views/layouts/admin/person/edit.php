@@ -61,7 +61,7 @@
 			<form id="addPhotoMain" name="addphotoMain" enctype="multipart/form-data">
 				<input type="file" name="file" id="mainfile" accept="image/*"/>
 				<input type="hidden" name="personId" id="personId" value="<?= $person->getId() ?>"/>
-				<input type="submit" name="uploadmain" value="Отправить" />
+				<input type="submit" name="uploadmain" value="Сменить" />
 			</form> 
 		<?php else: ?>
 			<p>
@@ -76,7 +76,8 @@
 		<a href="#life">Очерк жизни</a>
 	</p>
 	<div class="content" data-section-content>
-		<textarea class="ckeditor" name="description" id="description"><?= $person->getDescription() ?></textarea>
+		<textarea class="ckeditor" name="description" id="description" data-edit="auto"><?= $person->getDescription() ?></textarea>
+		<input type="submit" id="send" name="send" value="проверить">
 	</div>
 </section>
 <section>
@@ -88,13 +89,21 @@
 	</div>
 </section>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#send').click(function(){
+			var data = CKEDITOR.instances.description.getData();
+			alert(data);
+		});
+	});
+</script>
 <!--div class="row">
     <div class='small-8 large-8 columns'>
         <form class='custom' method="POST" enctype="multipart/form-data" id="post_add" name="post_add">
             <fieldset>
                 <label for="name">ФИО (полностью)</label>
                 <input type='text' name='name' id='name' value="<?//= $person->getName() ?>"/>
-
+	
                 <label for="years">Годы жизни</label>
                 <input type='text' name='years' id='years' value="<?//= $person->getYears() ?>"/>
                 

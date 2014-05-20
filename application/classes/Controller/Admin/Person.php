@@ -27,6 +27,7 @@ class Controller_Admin_Person extends Controller_Admin {
             $person = ORM::factory('Person');
             $person->loadValues($data);
             try {
+            	$person->setDescription(htmlspecialchars($data['description']), ENT_QUOTES);
                 $person->save();
 				$last_insert_id = $person->pk();
 			//	echo $last_insert_id; die;
