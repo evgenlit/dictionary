@@ -15,19 +15,22 @@ class Controller_Admin_Person extends Controller_Admin {
     }
 
     public function action_add() {
-		$this->template->scripts[]
+/*		$this->template->scripts[]
                 = '/res/etc/ckeditor/ckeditor.js';
 		$this->template->scripts[]
                 = '/res/etc/ckeditor/config.js';
         $this->template->scripts[]
                 = '/res/etc/ckeditor/lang/ru.js';
-        $data = array();
+*/        $data = array();
         if ($_POST) {
+//			var_dump($_POST); die;
             $data = $this->getPost();
             $person = ORM::factory('Person');
             $person->loadValues($data);
             try {
-            	$person->setDescription(htmlspecialchars($data['description']), ENT_QUOTES);
+				$test = htmlspecialchars($data['description'], null, 'cp1251');
+				echo $test; die;
+            	$person->setDescription($test);
                 $person->save();
 				$last_insert_id = $person->pk();
 			//	echo $last_insert_id; die;

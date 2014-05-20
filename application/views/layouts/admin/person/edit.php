@@ -76,7 +76,7 @@
 		<a href="#life">Очерк жизни</a>
 	</p>
 	<div class="content" data-section-content>
-		<textarea class="ckeditor" name="description" id="description" data-edit="auto"><?= $person->getDescription() ?></textarea>
+		<textarea class="ckeditor" name="description" id="description" data-edit="auto"><?= htmlspecialchars_decode($person->getDescription(), ENT_QUOTES) ?></textarea>
 		<input type="submit" id="send" name="send" value="проверить">
 	</div>
 </section>

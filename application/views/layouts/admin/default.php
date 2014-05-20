@@ -21,6 +21,7 @@
             <script src="/res/foundation/js/foundation.min.js"></script>
             <script src="/res/foundation/js/vendor/jquery-ui/js/jquery-ui-1.10.2.custom.min.js"></script>
             <script src="/res/foundation/js/vendor/jquery-ui/js/jquery.ui.datepicker-ru.js"></script>
+			<script type="text/javascript" src="/res/etc/ckeditor/ckeditor.js"></script>
 			
 
             <!-- Дополнительные стили и скрипты, которые грузятся исходя из страницы -->

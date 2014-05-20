@@ -40,6 +40,7 @@
 				
                 <label for="description">Биография</label>
                 <textarea class="ckeditor" name="description" id="description"></textarea>
+				<input type="hidden" name="desc" id="desc">
 
                 <input 
                     type='submit' 
@@ -51,3 +52,12 @@
         </form>
     </div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('textarea#description').change(function(){
+		  var data = CKEDITOR.instances.description.getData();
+		  alert(data);
+		  $('input#desc').val(data);
+		}).change();
+	});
+</script>
