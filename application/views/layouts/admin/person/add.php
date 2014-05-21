@@ -39,8 +39,9 @@
                 <input type="file" name="file" id="file"/>
 				
                 <label for="description">Биография</label>
-                <textarea class="ckeditor" name="description" id="description"></textarea>
-				<input type="hidden" name="desc" id="desc">
+                <textarea class="ckeditor" name="desc" id="desc"></textarea>
+				<input type="hidden" name="description" id="description">
+					   
 
                 <input 
                     type='submit' 
@@ -53,11 +54,10 @@
     </div>
 </div>
 <script type="text/javascript">
-	$(document).ready(function(){
-		$('textarea#description').change(function(){
-		  var data = CKEDITOR.instances.description.getData();
-		  alert(data);
-		  $('input#desc').val(data);
-		}).change();
+	CKEDITOR.replace('desc');
+	var editor = CKEDITOR.instances.desc;
+	editor.on('blur', function(event) {
+		var ckvalue = this.getData();
+		$('input#description').val(ckvalue);
 	});
 </script>

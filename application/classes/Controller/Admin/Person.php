@@ -25,15 +25,18 @@ class Controller_Admin_Person extends Controller_Admin {
         if ($_POST) {
 //			var_dump($_POST); die;
             $data = $this->getPost();
-            $person = ORM::factory('Person');
-            $person->loadValues($data);
             try {
-				$test = htmlspecialchars($data['description'], null, 'cp1251');
-				echo $test; die;
-            	$person->setDescription($test);
-                $person->save();
+				$person = ORM::factory('Person');
+//				$test = HTML::entities($_POST['description']);
+//				echo $test; die;
+//				$person->loadValues($data);
+				$person->name = $data['name'];
+				$person->years = $data['years'];
+				$person->epigraph = null; //потом поменять!!!!!!!!
+				$person->description = HTML::entities($_POST['description']);
+				$person->save();
 				$last_insert_id = $person->pk();
-			//	echo $last_insert_id; die;
+//				echo $last_insert_id; die;
 				if ($_FILES) {
 		            $photo = ORM::factory('Photo');
 		            $result = $photo->upload();
