@@ -26,7 +26,7 @@
 		<a href="#personal">Биографические данные</a>
 	</p>
 	<div class="content" data-section-content>
-		<form class='custom' method="POST" enctype="multipart/form-data" id="post_add" name="post_add" width="100px">
+		<form class='custom' method="POST" enctype="multipart/form-data" id="post_edit" name="post_edit" width="100px">
 			<fieldset>
 				<label for="name" id="formlabel">ФИО (полностью)</label>
 				<input type='text' name='name' id='name' value="<?= $person->getName() ?>" data-edit="auto"/>
@@ -77,7 +77,6 @@
 	</p>
 	<div class="content" data-section-content>
 		<textarea class="ckeditor" name="description" id="description" data-edit="auto"><?= htmlspecialchars_decode($person->getDescription(), ENT_QUOTES) ?></textarea>
-		<input type="submit" id="send" name="send" value="проверить">
 	</div>
 </section>
 <section>
@@ -89,14 +88,6 @@
 	</div>
 </section>
 </div>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#send').click(function(){
-			var data = CKEDITOR.instances.description.getData();
-			alert(data);
-		});
-	});
-</script>
 <!--div class="row">
     <div class='small-8 large-8 columns'>
         <form class='custom' method="POST" enctype="multipart/form-data" id="post_add" name="post_add">

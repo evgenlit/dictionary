@@ -33,7 +33,7 @@
 	                        <?= HTML::anchor('/admin/person/edit/' . $person->getId(), 'Редактировать'); ?>
 	                    </td>
 	                    <td>
-							<?= HTML::anchor('/admin/person/delete/' . $person->getId(), 'Удалить'); ?>
+							<?= HTML::anchor('/admin/person/delete/' . $person->getId(), 'Удалить', array('onclick'=>'return confirm("Вы уверены?")')); ?>
 	                    </td>
 	                </tr>
 	            <?php endforeach; ?>

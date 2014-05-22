@@ -14,6 +14,6 @@ fieldset {
 	border: solid 1px #FFFDFD;
 }
 
-form#post_add.custom{
+form#post_edit.custom{
 	width: 800px;
 }

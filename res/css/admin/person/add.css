@@ -1,1 +1,17 @@
 
+img {
+	height: 60px;
+	max-width: 100px;
+}
+label {
+	font-size: 18px;
+}
+label#epigraph {
+	margin-top: 15px;
+}
+form#post_add.custom{
+	width: 800px;
+}
+fieldset {
+	width: 910px;
+}

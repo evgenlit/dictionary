@@ -21,10 +21,12 @@ class Controller_Admin_Person extends Controller_Admin {
                 = '/res/etc/ckeditor/config.js';
         $this->template->scripts[]
                 = '/res/etc/ckeditor/lang/ru.js';
-*/        $data = array();
+*/        
+		$data = array();
         if ($_POST) {
 //			var_dump($_POST); die;
             $data = $this->getPost();
+//			var_dump($data); die;
             try {
 				$person = ORM::factory('Person');
 //				$test = HTML::entities($_POST['description']);
@@ -32,11 +34,10 @@ class Controller_Admin_Person extends Controller_Admin {
 //				$person->loadValues($data);
 				$person->name = $data['name'];
 				$person->years = $data['years'];
-				$person->epigraph = null; //потом поменять!!!!!!!!
+				$person->epigraph = HTML::entities($_POST['epigraph']);
 				$person->description = HTML::entities($_POST['description']);
 				$person->save();
 				$last_insert_id = $person->pk();
-//				echo $last_insert_id; die;
 				if ($_FILES) {
 		            $photo = ORM::factory('Photo');
 		            $result = $photo->upload();

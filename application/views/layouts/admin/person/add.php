@@ -35,13 +35,14 @@
                 <label for="years">Годы жизни</label>
                 <input type='text' name='years' id='years'/>
                 
-                <label for="file">Загрузить фото</label>
-                <input type="file" name="file" id="file"/>
+				<label for="file">Загрузить фото</label>
+				<input type="file" name="file" id="file"/>
 				
-                <label for="description">Биография</label>
-                <textarea class="ckeditor" name="desc" id="desc"></textarea>
-				<input type="hidden" name="description" id="description">
-					   
+				<label for="description">Очерк жизни</label>
+				<textarea class="ckeditor" name="description" id="description"></textarea>
+				
+				<label for="epigraph" id="epigraph">Эпиграф</label>
+				<textarea class="ckeditor" name="epigraph" id="epigraph"></textarea>
 
                 <input 
                     type='submit' 
@@ -53,11 +54,3 @@
         </form>
     </div>
 </div>
-<script type="text/javascript">
-	CKEDITOR.replace('desc');
-	var editor = CKEDITOR.instances.desc;
-	editor.on('blur', function(event) {
-		var ckvalue = this.getData();
-		$('input#description').val(ckvalue);
-	});
-</script>
