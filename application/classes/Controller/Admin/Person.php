@@ -82,35 +82,14 @@ class Controller_Admin_Person extends Controller_Admin {
 			$data['mainPhoto'] = $photomain->getName();
 		}
 		
-/*		
-		if ($_POST) {
-            $data = $this->getPost();
-            $person = ORM::factory('Person');
-            $person->loadValues($data);
-            try {
-                $person->save();
-				$last_insert_id = $person->pk();
-			//	echo $last_insert_id; die;
-				if ($_FILES) {
-		            $photo = ORM::factory('Photo');
-		            $result = $photo->upload();
-		            if ($result !== false){
-		                $photo->validationRequired(false);
-		                $photo->setPath($result['new_path']);
-						$photo->setName($result['name']);
-						$photo->setPersonId($last_insert_id);
-						$photo->setDescription('Портрет');
-						$photo->setMain(1);
-		                $photo->save();
-		            }
-		        }
-                $data['success'] = 'Запись изменена!';
-            }  catch (ORM_Validation_Exception $e) {
-                $data['errors'] = $e->errors('validation', 'ru');  
-            }
-		}
-*/		
+		$selectDataForVideo = array(
+			
+		);
+		$videos = ORM::factory('Video');
+		
+		
 		$data['person'] = $person;
+		$data['videos'] = $videos;
 		$this->setData($data);
 		$this->render();
 		

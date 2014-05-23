@@ -29,19 +29,13 @@
 		<form class='custom' method="POST" enctype="multipart/form-data" id="post_edit" name="post_edit" width="100px">
 			<fieldset>
 				<label for="name" id="formlabel">ФИО (полностью)</label>
-				<input type='text' name='name' id='name' value="<?= $person->getName() ?>" data-edit="auto"/>
+				<input type='text' name='name' id='name' value="<?= $person->getName() ?>" data-edit="auto" data-save="" />
 				
 				<label for="years" id="formlabel">Годы жизни</label>
-				<input type='text' name='years' id='years' value="<?= $person->getYears() ?>" data-edit="auto"/>
+				<input type='text' name='years' id='years' value="<?= $person->getYears() ?>" data-edit="auto" data-save="" />
 				
 				<label for="epigraph" id="formlabel">Эпиграф</label>
 				<textarea class="ckeditor" name="epigraph" id="epigraph" data-edit="auto"><?= $person->getEpigraph() ?></textarea>
-				<!--input 
-					type='submit' 
-					style="margin-top: 20px" 
-					class='small button' 
-					value='Сохранить изменения'
-				/-->
 			</fieldset>
 		</form>
 	</div>
