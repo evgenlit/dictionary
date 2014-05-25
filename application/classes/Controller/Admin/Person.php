@@ -24,14 +24,9 @@ class Controller_Admin_Person extends Controller_Admin {
 */        
 		$data = array();
         if ($_POST) {
-//			var_dump($_POST); die;
             $data = $this->getPost();
-//			var_dump($data); die;
             try {
 				$person = ORM::factory('Person');
-//				$test = HTML::entities($_POST['description']);
-//				echo $test; die;
-//				$person->loadValues($data);
 				$person->name = $data['name'];
 				$person->years = $data['years'];
 				$person->epigraph = HTML::entities($_POST['epigraph']);
@@ -116,6 +111,20 @@ class Controller_Admin_Person extends Controller_Admin {
 			$db->rollback();
 		}
 		
+	}
+	
+	public function action_jeditEpigraph() {
+		$id = $this->request->param('p1');
+		if (null == $id) {
+			throw new Exception('Не указан идентификатор персоналии.');
+		}
+		if ($_POST) {
+			$person = ORM::factory('Person', $id);
+			$person->epigraph = $_POST['value'];
+			$person->save();
+		} else {
+			echo 'Все плохо!';
+		}
 	}
 
 }

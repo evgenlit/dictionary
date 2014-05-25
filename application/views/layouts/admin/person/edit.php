@@ -35,7 +35,7 @@
 				<input type='text' name='years' id='years' value="<?= $person->getYears() ?>" data-edit="auto" data-save="" />
 				
 				<label for="epigraph" id="formlabel">Эпиграф</label>
-				<textarea class="ckeditor" name="epigraph" id="epigraph" data-edit="auto"><?= $person->getEpigraph() ?></textarea>
+				<textarea class="ckeditor" name="epigraph" id="epigraph"><?= $person->getEpigraph() ?></textarea>
 			</fieldset>
 		</form>
 	</div>

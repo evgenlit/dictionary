@@ -69,3 +69,29 @@ $(document).ready(function(){
 			});
 	});
 });
+
+$(document).ready(function(){	
+	CKEDITOR.replace('epigraph');
+	var editor = CKEDITOR.instances.epigraph;
+	editor.on('blur', function(event) {
+		var personId = $("input#personId").val();
+		var value = this.getData();
+		var upurl = "/admin/person/jeditEpigraph/"+personId;
+		$.ajax({
+			url: upurl,
+			type: "POST",
+			data: {value: value},
+			cache: false,
+			dataType: "html",
+			success:
+				function(){
+					alert('Данные сохранены');
+					$('#cke_1_contents').animate({backgroundColor: "#00bb00"}, 1000);
+				},
+			error: 
+				function() {
+					alert('Все плохо');
+				}
+		});
+	});
+});
