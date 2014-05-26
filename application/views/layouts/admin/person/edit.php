@@ -82,33 +82,3 @@
 	</div>
 </section>
 </div>
-<!--div class="row">
-    <div class='small-8 large-8 columns'>
-        <form class='custom' method="POST" enctype="multipart/form-data" id="post_add" name="post_add">
-            <fieldset>
-                <label for="name">ФИО (полностью)</label>
-                <input type='text' name='name' id='name' value="<?//= $person->getName() ?>"/>
-	
-                <label for="years">Годы жизни</label>
-                <input type='text' name='years' id='years' value="<?//= $person->getYears() ?>"/>
-                
-                <?//= HTML::image('/res/upload/photos/' . $person->getPhotoName($person->getId())) ?>
-                
-                <label for="file">Изменить фото</label>
-                <input type="file" name="file" id="file" accept="image/*"/>
-				
-                <label for="description">Биография</label>
-                <textarea class="ckeditor" name="description" id="description">
-					<?//= $person->getDescription() ?>
-                </textarea>
-
-                <input 
-                    type='submit' 
-                    style="margin-top: 20px" 
-                    class='small button' 
-                    value='Сохранить изменения'
-                />
-            </fieldset>
-        </form>
-    </div>
-</div-->

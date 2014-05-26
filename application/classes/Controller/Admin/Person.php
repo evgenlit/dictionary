@@ -127,14 +127,14 @@ class Controller_Admin_Person extends Controller_Admin {
 		}
 	}
 	
-	public function action_jeditBiography() {
+	public function action_jeditDescription() {
 		$id = $this->request->param('p1');
 		if (null == $id) {
 			throw new Exception('Не указан идентификатор персоналии.');
 		}
 		if ($_POST) {
 			$person = ORM::factory('Person', $id);
-			$person->biography = $_POST['value'];
+			$person->description = $_POST['value'];
 			$person->save();
 		} else {
 			echo 'Все плохо!';

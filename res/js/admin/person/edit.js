@@ -71,48 +71,78 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-	$('.ckeditor').each(function(){
-		var ckID = $(this).attr('id');
-	    CKEDITOR.replace(ckID);
-	    var editor = CKEDITOR.instances.ckID;
-		editor.on('blur', function(event) {
-			var personId = $("input#personId").val();
-			var value = editor.getData();
-			if (ckID == 'epigraph') {
-				var upurl = "/admin/person/jeditEpigraph/"+personId;
-			} else {
-				var upurl = "/admin/person/jeditBiography/"+personId;
-			}
-			$.ajax({
-				url: upurl,
-				type: "POST",
-				data: {value: value},
-				cache: false,
-				dataType: "html",
-				success:
-					function(){
+	CKEDITOR.replace('epigraph');
+	var editor = CKEDITOR.instances.epigraph;
+	editor.on('blur', function(event) {
+		var personId = $("input#personId").val();
+		var value = editor.getData();
+		var upurl = "/admin/person/jeditEpigraph/"+personId;
+		$.ajax({
+			url: upurl,
+			type: "POST",
+			data: {value: value},
+			cache: false,
+			dataType: "html",
+			success:
+				function(){
+					editor.document.getBody()
+					.setStyles({
+						backgroundColor: '#00ff00',
+						transitionTimingFunction: 'linear',
+						animationDuration: '10s'
+					});
+					CKEDITOR.tools.setTimeout(function(){
 						editor.document.getBody()
 						.setStyles({
-							backgroundColor: '#00ff00',
-							transitionTimingFunction: 'linear',
-							animationDuration: '10s'
-						});
-						CKEDITOR.tools.setTimeout(function(){
-							editor.document.getBody()
-							.setStyles({
-							backgroundColor: '#ffffff',
-							transitionTimingFunction: 'linear',
-							animationDuration: '10s'
-						});
-						}, 1000 );
-					},
-				error:
-					function() {
-						alert('Все плохо');
-					}
-			});
+						backgroundColor: '#ffffff',
+						transitionTimingFunction: 'linear',
+						animationDuration: '10s'
+					});
+					}, 1000 );
+				},
+			error:
+				function() {
+					alert('Все плохо');
+				}
 		});
 	});
+	
+	CKEDITOR.replace('description');
+	var editor1 = CKEDITOR.instances.description;
+	editor1.on('blur', function(event) {
+		var personId = $("input#personId").val();
+		var value1 = editor1.getData();
+		var upurl1 = "/admin/person/jeditDescription/"+personId;
+		$.ajax({
+			url: upurl1,
+			type: "POST",
+			data: {value: value1},
+			cache: false,
+			dataType: "html",
+			success:
+				function(){
+					editor1.document.getBody()
+					.setStyles({
+						backgroundColor: '#00ff00',
+						transitionTimingFunction: 'linear',
+						animationDuration: '10s'
+					});
+					CKEDITOR.tools.setTimeout(function(){
+						editor1.document.getBody()
+						.setStyles({
+						backgroundColor: '#ffffff',
+						transitionTimingFunction: 'linear',
+						animationDuration: '10s'
+					});
+					}, 1000 );
+				},
+			error:
+				function() {
+					alert('Все плохо');
+				}
+		});
+	});
+	
 });
 
 
