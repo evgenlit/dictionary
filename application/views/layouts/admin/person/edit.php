@@ -70,7 +70,7 @@
 		<a href="#life">Очерк жизни</a>
 	</p>
 	<div class="content" data-section-content>
-		<textarea class="ckeditor" name="description" id="description" data-edit="auto"><?= htmlspecialchars_decode($person->getDescription(), ENT_QUOTES) ?></textarea>
+		<textarea class="ckeditor" name="description" id="description"><?= htmlspecialchars_decode($person->getDescription(), ENT_QUOTES) ?></textarea>
 	</div>
 </section>
 <section>

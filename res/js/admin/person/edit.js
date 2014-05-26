@@ -70,28 +70,49 @@ $(document).ready(function(){
 	});
 });
 
-$(document).ready(function(){	
-	CKEDITOR.replace('epigraph');
-	var editor = CKEDITOR.instances.epigraph;
-	editor.on('blur', function(event) {
-		var personId = $("input#personId").val();
-		var value = this.getData();
-		var upurl = "/admin/person/jeditEpigraph/"+personId;
-		$.ajax({
-			url: upurl,
-			type: "POST",
-			data: {value: value},
-			cache: false,
-			dataType: "html",
-			success:
-				function(){
-					alert('Данные сохранены');
-					$('#cke_1_contents').animate({backgroundColor: "#00bb00"}, 1000);
-				},
-			error: 
-				function() {
-					alert('Все плохо');
-				}
+$(document).ready(function(){
+	$('.ckeditor').each(function(){
+		var ckID = $(this).attr('id');
+	    CKEDITOR.replace(ckID);
+	    var editor = CKEDITOR.instances.ckID;
+		editor.on('blur', function(event) {
+			var personId = $("input#personId").val();
+			var value = editor.getData();
+			if (ckID == 'epigraph') {
+				var upurl = "/admin/person/jeditEpigraph/"+personId;
+			} else {
+				var upurl = "/admin/person/jeditBiography/"+personId;
+			}
+			$.ajax({
+				url: upurl,
+				type: "POST",
+				data: {value: value},
+				cache: false,
+				dataType: "html",
+				success:
+					function(){
+						editor.document.getBody()
+						.setStyles({
+							backgroundColor: '#00ff00',
+							transitionTimingFunction: 'linear',
+							animationDuration: '10s'
+						});
+						CKEDITOR.tools.setTimeout(function(){
+							editor.document.getBody()
+							.setStyles({
+							backgroundColor: '#ffffff',
+							transitionTimingFunction: 'linear',
+							animationDuration: '10s'
+						});
+						}, 1000 );
+					},
+				error:
+					function() {
+						alert('Все плохо');
+					}
+			});
 		});
 	});
 });
+
+
