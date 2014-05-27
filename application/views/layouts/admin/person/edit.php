@@ -88,15 +88,46 @@
 						<td><?= $video->getId() ?></td>
 						<td><?= $video->getTitle() ?></td>
 						<td><?= $video->getDescription() ?></td>
+						<td><?= $video->getDate() ?></td>
 						<td><?= $video->getYoutube() ?></td>
 					</tr>
 				</table>
 			<?php endforeach;?>
 		<?php else: ?>
 			<div id="results">
-				<h3>Ни одно видео еще не было добавлено</h3>
+				<h4>Ничего не найдено</h4>
 			</div>
 		<?php endif; ?>
+		<div>
+			<a href="#" data-reveal-id="addvideomodal" class="round small button videoadd">Добавить</a>
+		</div>
+		<div id="addvideomodal" class="reveal-modal medium" data-reveal>
+			<h3>Добавляем видео</h3>
+			<div class="row">
+				<form class='custom' method="POST" id="video_add" name="video_add">
+					<fieldset>
+						<input type="hidden" name="personID" id="personID" value="<?= $person->getId()?>"/>
+						<label for="name">Название</label>
+						<input type='text' name='name' id='name'/>
+
+						<label for="description">Описание</label>
+						<textarea class="description" name="description" id="description"></textarea>
+
+						<label for="youtube">Код с youtube</label>
+						<textarea class="youtube" name="youtube" id="youtube"></textarea>
+
+						<input 
+							type='submit' 
+							style="margin-top: 20px" 
+							class='success radius medium button' 
+							id="submitVideo"
+							value='Добавить'
+						/>
+					</fieldset>
+				</form>
+			</div>
+			<a class="close-reveal-modal">&#215;</a>
+		</div>
 	</div>
 </section>
 </div>

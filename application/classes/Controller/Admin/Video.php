@@ -46,6 +46,12 @@ class Controller_Admin_Video extends Controller_Admin {
         $this->render();
     }
 	
-	
+	public function action_jvideoAdd() {
+		$id = $this->request->param('p1');
+		if (null == $id) {
+			throw new Exception('Не указан идентификатор персоналии.');
+		}
+		
+	}
 
 }
