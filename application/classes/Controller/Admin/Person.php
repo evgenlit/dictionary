@@ -77,10 +77,7 @@ class Controller_Admin_Person extends Controller_Admin {
 			$data['mainPhoto'] = $photomain->getName();
 		}
 		
-		$selectDataForVideo = array(
-			
-		);
-		$videos = ORM::factory('Video');
+		$videos = ORM::factory('Video')->where('person_id', '=', $id)->find_all();
 		
 		
 		$data['person'] = $person;

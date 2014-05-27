@@ -57,11 +57,6 @@
 				<input type="hidden" name="personId" id="personId" value="<?= $person->getId() ?>"/>
 				<input type="submit" name="uploadmain" value="Сменить" />
 			</form> 
-		<?php else: ?>
-			<p>
-				Фото не загружено
-			</p>
-			<input type="file" name="file" id="mainfile" accept="image/*"/>
 		<?php endif; ?>
 	</div>
 </section>
@@ -78,7 +73,30 @@
 		<a href="#video">Видео</a>
 	</p>
 	<div class="content" data-section-content>
-		<p>Content of section 2.</p>
+		<?//php var_dump($videos); die; ?>
+		<?php if (count($videos) > 0): ?>
+			<?php foreach($videos as $video): ?>
+				<table>
+					<tr>
+						<th>#</th>
+						<th>Название</th>
+						<th>Описание</th>
+						<th>Дата добавления</th>
+						<th></th>
+					</tr>
+					<tr>
+						<td><?= $video->getId() ?></td>
+						<td><?= $video->getTitle() ?></td>
+						<td><?= $video->getDescription() ?></td>
+						<td><?= $video->getYoutube() ?></td>
+					</tr>
+				</table>
+			<?php endforeach;?>
+		<?php else: ?>
+			<div id="results">
+				<h3>Ни одно видео еще не было добавлено</h3>
+			</div>
+		<?php endif; ?>
 	</div>
 </section>
 </div>
