@@ -146,62 +146,63 @@ $(document).ready(function(){
 
 $(document).ready(function() {
 	$('form#video_add').submit(function(e) {
-		var personId = $("input#personID").val();
-		$.post(
-		'/admin/video/jvideoAdd/'+personId, 
-		$(this).serialize(), function(data) {
-
-		if (undefined !== data.resident_balance) {
-			$('.modal').modal('hide');
-			var span = $('span#resbalance' + $('input#sushnevo_payment_resident').val());
-			$('div.regpay').dialog('close');
-			span.animate({
-				backgroundColor: "#00bb00"
-			}, 1000);
-			span.html(data.resident_balance);
-			span.animate({
-				backgroundColor: "#ffffff"
-			}, 1000);
-			var h4 = $('h4#noresults');
-			if (h4.length > 0) {
-				h4.closest('center').remove();
-				var resulttr = '<tr>' + 
-								'<td class="muted">' + data.sushnevo_payment_id + '</td>' +
-								'<td>' + data.sushnevo_payment_date + '</td>' +
-								'<td>' + data.sushnevo_payment_sum + ' руб.</td>' +
-								'<td></td>' +
-				'</tr>';
-					//			$('table#residentPays').append(tr);
-				var table = $('<table></table>');
-					table.attr('id', 'residentPays');
-					table.attr('class', 'table table-striped');
-					table.attr('style', 'width: 70%');
-
-				var thead = $('<thead></thead>');
-
-				var tr = '<tr>' + 
-					'<th class="muted">' + '#' + '</th>' + 
-					'<th>' + 'Дата платежа' + '</th>' +
-					'<th>' + 'Сумма' + '</th>' +
-					'<th></th>' +
-					'</tr>';
-				var tbody = $('<tbody></tbody>');
-				thead.append(tr);
-				tbody.append(resulttr);
-				table.append(thead);
-				table.append(tbody);
-				table.insertAfter('#paymentMain');
-			} else {
-				var newtr = '<tr>' + 
-							'<td class="muted">' + data.sushnevo_payment_id + '</td>' +
-							'<td>' + data.sushnevo_payment_date + '</td>' +
-							'<td>' + data.sushnevo_payment_sum + ' руб.</td>' +
-							'<td></td>' +
-				'</tr>';
-				$('table#residentPays').append(newtr);
-			}
-		}
-		});
 		e.preventDefault();
+		var formData = $('form#video_add').serialize();
+		var personId = $("input#personID").val();
+		$.ajax({
+			url: "/admin/video/jvideoAdd/"+personId,
+			type: "POST",
+			data: formData,
+			contentType:false,
+			processData: false,
+			cache: false,
+			dataType: "json",
+			success:
+				function(data) {
+					$('#addvideomodal').foundation('reveal', 'close');
+					var h4 = $('h4#noresults');
+					if (h4.length > 0) {
+						h4.closest('center').remove();
+						var table = $('<table></table>');
+							table.attr('id', 'add_video_table');
+							
+						var head = $('<tr></tr>');
+							head.attr('id', 'head');
+							
+						var th = '<th>#</th>' +	
+								'<th>Название</th>' +
+								'<th>Описание</th>' +
+								'<th>Дата добавления</th>' +
+								'<th></th>';
+						head.append(th);
+						
+						var resulttr = 
+						'<tr>' + 
+							 '<td>' + data.id + '</td>' +
+							 '<td>' + data.title + '</td>' +
+							 '<td>' + data.description + '</td>' +
+							 '<td>' + data.date + '</td>' +
+							 '<td>' + data.youtube + '</td>' +
+						'</tr>';
+						table.append(head);
+						table.append(resulttr);
+						table.insertBefore('#videoMain');
+					} else {
+						var newtr = 
+							'<tr>' + 
+								 '<td>' + data.id + '</td>' +
+								 '<td>' + data.title + '</td>' +
+								 '<td>' + data.description + '</td>' +
+								 '<td>' + data.date + '</td>' +
+								 '<td>' + data.youtube + '</td>' +
+							'</tr>';
+						$('table#add_video_table').append(newtr);
+					}
+				},
+			error:
+				function() {
+					alert('Не были переданы данные формы');
+				}
+		});
 	});
 });

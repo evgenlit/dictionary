@@ -76,8 +76,8 @@
 		<?//php var_dump($videos); die; ?>
 		<?php if (count($videos) > 0): ?>
 			<?php foreach($videos as $video): ?>
-				<table>
-					<tr>
+				<table id="add_video_table">
+					<tr id="head">
 						<th>#</th>
 						<th>Название</th>
 						<th>Описание</th>
@@ -94,11 +94,11 @@
 				</table>
 			<?php endforeach;?>
 		<?php else: ?>
-			<div id="results">
-				<h4>Ничего не найдено</h4>
-			</div>
+			<center>
+				<h4 id="noresults">Ничего не найдено</h4>
+			</center>
 		<?php endif; ?>
-		<div>
+		<div id="videoMain">
 			<a href="#" data-reveal-id="addvideomodal" class="round small button videoadd">Добавить</a>
 		</div>
 		<div id="addvideomodal" class="reveal-modal medium" data-reveal>
@@ -107,8 +107,8 @@
 				<form class='custom' method="POST" id="video_add" name="video_add">
 					<fieldset>
 						<input type="hidden" name="personID" id="personID" value="<?= $person->getId()?>"/>
-						<label for="name">Название</label>
-						<input type='text' name='name' id='name'/>
+						<label for="title">Название</label>
+						<input type='text' name='title' id='title'/>
 
 						<label for="description">Описание</label>
 						<textarea class="description" name="description" id="description"></textarea>
