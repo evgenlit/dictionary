@@ -145,20 +145,24 @@ $(document).ready(function(){
 });
 
 $(document).ready(function() {
-	$('form#video_add').submit(function(e) {
+	$('form#videoaddform').submit(function(e) {
 		e.preventDefault();
-		var formData = $('form#video_add').serialize();
-		var personId = $("input#personID").val();
+		var formData = $('form#videoaddform').serialize();
+		var personId = $("input#personid").val();
+		var url = "/admin/video/jvideoAdd/"+personId;
+
 		$.ajax({
-			url: "/admin/video/jvideoAdd/"+personId,
+			url: url,
 			type: "POST",
 			data: formData,
-			contentType:false,
-			processData: false,
+//			contentType:false,
+//			processData: false,
 			cache: false,
 			dataType: "json",
 			success:
 				function(data) {
+			alert(data);
+//					alert(1);
 					$('#addvideomodal').foundation('reveal', 'close');
 					var h4 = $('h4#noresults');
 					if (h4.length > 0) {
@@ -201,7 +205,7 @@ $(document).ready(function() {
 				},
 			error:
 				function() {
-					alert('Не были переданы данные формы');
+					alert('Все плохо');
 				}
 		});
 	});

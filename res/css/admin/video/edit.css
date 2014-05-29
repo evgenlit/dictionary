@@ -62,3 +62,7 @@
 	cursor:pointer;
 	vertical-align:top
 }
+iframe {
+	width: 150px;
+	height: 150px;
+}

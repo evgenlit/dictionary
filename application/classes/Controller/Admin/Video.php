@@ -56,8 +56,10 @@ class Controller_Admin_Video extends Controller_Admin {
 			$video = ORM::factory('Video');
 			$video->title = $_POST['title'];
 			$video->description = $_POST['description'];
-			$video->youtube = HTML::entities($_POST['youtube']);
-			$video->person_id = $id;
+			$video->youtube = $_POST['youtube'];
+			$video->path = NULL;
+			$video->date = Date::formatted_time();
+			$video->setPersonId($id);
 			$video->save();
 			$this->setData(array(
 				'id'			=> $video->getId(),
@@ -66,6 +68,7 @@ class Controller_Admin_Video extends Controller_Admin {
 				'date'			=> $video->getDate(),
 				'yuotube'		=> $video->getYoutube() 
 			));
+
 		}
 		$this->render();
 	}

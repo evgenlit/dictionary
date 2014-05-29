@@ -52,5 +52,14 @@ class Model_Video extends ORM {
 
         return false;
     }
+	
+	public function setPersonId($id) {
+		if(!isset($id)) {
+			$this->person_id = null;
+		} else {
+			$this->person_id = $id;
+		}
+	}
+	
 }
 

@@ -75,8 +75,8 @@
 	<div class="content" data-section-content>
 		<?//php var_dump($videos); die; ?>
 		<?php if (count($videos) > 0): ?>
-			<?php foreach($videos as $video): ?>
-				<table id="add_video_table">
+			<table id="add_video_table">
+				<thead>
 					<tr id="head">
 						<th>#</th>
 						<th>Название</th>
@@ -84,6 +84,9 @@
 						<th>Дата добавления</th>
 						<th></th>
 					</tr>
+				</thead>
+				<tbody>
+			<?php foreach($videos as $video): ?>
 					<tr>
 						<td><?= $video->getId() ?></td>
 						<td><?= $video->getTitle() ?></td>
@@ -91,8 +94,9 @@
 						<td><?= $video->getDate() ?></td>
 						<td><?= $video->getYoutube() ?></td>
 					</tr>
-				</table>
 			<?php endforeach;?>
+				</tbody>
+			</table>
 		<?php else: ?>
 			<center>
 				<h4 id="noresults">Ничего не найдено</h4>
@@ -104,9 +108,9 @@
 		<div id="addvideomodal" class="reveal-modal medium" data-reveal>
 			<h3>Добавляем видео</h3>
 			<div class="row">
-				<form class='custom' method="POST" id="video_add" name="video_add">
+				<form method="POST" id="videoaddform" name="videoaddform">
 					<fieldset>
-						<input type="hidden" name="personID" id="personID" value="<?= $person->getId()?>"/>
+						<input type="hidden" name="person_id" id="person_id" value="<?= $person->getId()?>"/>
 						<label for="title">Название</label>
 						<input type='text' name='title' id='title'/>
 

@@ -51,7 +51,6 @@ class Controller_Admin_Photo extends Controller_Admin {
 					$photo->setDescription('Портрет');
 					$photo->setMain(1);
 					$photo->save();
-					$result['name'] = $photo->getName();
 					$this->setData(array(
 						'name' => $photo->getName() 
 					 ));

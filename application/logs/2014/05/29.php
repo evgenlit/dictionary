@@ -106,3 +106,23 @@
 #7 /home/prophet/www/dict/system/classes/Kohana/Request.php(986): Kohana_Request_Client->execute(Object(Request))
 #8 /home/prophet/www/dict/index.php(118): Kohana_Request->execute()
 #9 {main} in /home/prophet/www/dict/modules/orm/classes/Kohana/ORM.php:1302
+2014-05-29 23:11:30 --- CRITICAL: ORM_Validation_Exception [ 0 ]: Failed to validate array ~ MODPATH\orm\classes\Kohana\ORM.php [ 1275 ] in Z:\home\dictionary\www\modules\orm\classes\Kohana\ORM.php:1302
+2014-05-29 23:11:30 --- DEBUG: #0 Z:\home\dictionary\www\modules\orm\classes\Kohana\ORM.php(1302): Kohana_ORM->check(NULL)
+#1 Z:\home\dictionary\www\modules\orm\classes\Kohana\ORM.php(1421): Kohana_ORM->create(NULL)
+#2 Z:\home\dictionary\www\application\classes\Controller\Admin\Video.php(62): Kohana_ORM->save()
+#3 Z:\home\dictionary\www\system\classes\Kohana\Controller.php(84): Controller_Admin_Video->action_jvideoAdd()
+#4 [internal function]: Kohana_Controller->execute()
+#5 Z:\home\dictionary\www\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Admin_Video))
+#6 Z:\home\dictionary\www\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 Z:\home\dictionary\www\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#8 Z:\home\dictionary\www\index.php(118): Kohana_Request->execute()
+#9 {main} in Z:\home\dictionary\www\modules\orm\classes\Kohana\ORM.php:1302
+2014-05-29 23:24:43 --- CRITICAL: ErrorException [ 8 ]: Undefined index: youtube ~ APPPATH\classes\Controller\Admin\Video.php [ 54 ] in Z:\home\dictionary\www\application\classes\Controller\Admin\Video.php:54
+2014-05-29 23:24:43 --- DEBUG: #0 Z:\home\dictionary\www\application\classes\Controller\Admin\Video.php(54): Kohana_Core::error_handler(8, 'Undefined index...', 'Z:\home\diction...', 54, Array)
+#1 Z:\home\dictionary\www\system\classes\Kohana\Controller.php(84): Controller_Admin_Video->action_jvideoAdd()
+#2 [internal function]: Kohana_Controller->execute()
+#3 Z:\home\dictionary\www\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Admin_Video))
+#4 Z:\home\dictionary\www\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 Z:\home\dictionary\www\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#6 Z:\home\dictionary\www\index.php(118): Kohana_Request->execute()
+#7 {main} in Z:\home\dictionary\www\application\classes\Controller\Admin\Video.php:54
