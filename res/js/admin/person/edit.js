@@ -148,7 +148,7 @@ $(document).ready(function() {
 	$('form#videoaddform').submit(function(e) {
 		e.preventDefault();
 		var formData = $('form#videoaddform').serialize();
-		var personId = $("input#personid").val();
+		var personId = $("input#person_id").val();
 		var url = "/admin/video/jvideoAdd/"+personId;
 
 		$.ajax({
@@ -161,35 +161,31 @@ $(document).ready(function() {
 			dataType: "json",
 			success:
 				function(data) {
-			alert(data);
-//					alert(1);
 					$('#addvideomodal').foundation('reveal', 'close');
 					var h4 = $('h4#noresults');
 					if (h4.length > 0) {
 						h4.closest('center').remove();
-						var table = $('<table></table>');
-							table.attr('id', 'add_video_table');
-							
-						var head = $('<tr></tr>');
-							head.attr('id', 'head');
-							
-						var th = '<th>#</th>' +	
-								'<th>Название</th>' +
-								'<th>Описание</th>' +
-								'<th>Дата добавления</th>' +
-								'<th></th>';
-						head.append(th);
+						var table = '<table id="add_video_table">' +
+										'<thead>' +
+											'<tr id="head">' +
+												'<th>#</th>' +
+												'<th>Название</th>' +
+												'<th>Описание</th>' +
+												'<th>Дата добавления</th>' +
+												'<th></th>' +
+											'</tr>' +
+										'</thead>' +
+										'<tbody>' +
+											'<tr>' + 
+												 '<td>' + data.id + '</td>' +
+												 '<td>' + data.title + '</td>' +
+												 '<td>' + data.description + '</td>' +
+												 '<td>' + data.date + '</td>' +
+												 '<td>' + data.youtube + '</td>' +
+											'</tr>' +
+										'</tbody>' +
+									'</table>';
 						
-						var resulttr = 
-						'<tr>' + 
-							 '<td>' + data.id + '</td>' +
-							 '<td>' + data.title + '</td>' +
-							 '<td>' + data.description + '</td>' +
-							 '<td>' + data.date + '</td>' +
-							 '<td>' + data.youtube + '</td>' +
-						'</tr>';
-						table.append(head);
-						table.append(resulttr);
 						table.insertBefore('#videoMain');
 					} else {
 						var newtr = 

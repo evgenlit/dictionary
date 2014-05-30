@@ -61,16 +61,15 @@ class Controller_Admin_Video extends Controller_Admin {
 			$video->date = Date::formatted_time();
 			$video->setPersonId($id);
 			$video->save();
-			$this->setData(array(
+			echo json_encode(array(
 				'id'			=> $video->getId(),
 				'title' 		=> $video->getTitle(),
 				'description'	=> $video->getDescription(),
 				'date'			=> $video->getDate(),
-				'yuotube'		=> $video->getYoutube() 
-			));
+				'youtube'		=> $video->getYoutube() 
+			)); die;
 
 		}
-		$this->render();
 	}
 
 }
