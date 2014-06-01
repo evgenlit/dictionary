@@ -14,14 +14,7 @@ class Controller_Admin_Person extends Controller_Admin {
         $this->render();
     }
 
-    public function action_add() {
-/*		$this->template->scripts[]
-                = '/res/etc/ckeditor/ckeditor.js';
-		$this->template->scripts[]
-                = '/res/etc/ckeditor/config.js';
-        $this->template->scripts[]
-                = '/res/etc/ckeditor/lang/ru.js';
-*/        
+    public function action_add() {       
 		$data = array();
         if ($_POST) {
             $data = $this->getPost();
@@ -78,6 +71,7 @@ class Controller_Admin_Person extends Controller_Admin {
 		}
 		
 		$videos = ORM::factory('Video')->where('person_id', '=', $id)->find_all();
+		
 		
 		
 		$data['person'] = $person;

@@ -76,26 +76,21 @@
 		<?//php var_dump($videos); die; ?>
 		<?php if (count($videos) > 0): ?>
 			<table id="add_video_table">
-				<thead>
-					<tr id="head">
-						<th>#</th>
-						<th>Название</th>
-						<th>Описание</th>
-						<th>Дата добавления</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
 			<?php foreach($videos as $video): ?>
-					<tr>
-						<td><?= $video->getId() ?></td>
-						<td><?= $video->getTitle() ?></td>
-						<td><?= $video->getDescription() ?></td>
-						<td><?= $video->getDate() ?></td>
-						<td><?= $video->getYoutube() ?></td>
-					</tr>
+				<tr>
+					<td rowspan="4"><?= $video->getYoutube() ?></td>
+					<td><b>ID:</b> <?= $video->getId() ?></td>
+				</tr>
+				<tr>
+					<td class="youtube"><b>Название:</b> <?= $video->getTitle() ?></td>
+				</tr>
+				<tr>
+					<td class="youtube"><b>Описание:</b> <?= $video->getDescription() ?></td>
+				</tr>
+				<tr>
+					<td class="youtube"><b>Дата добавления:</b> <?= Date::formatted_time($video->getDate(), 'd.m.Y') ?></td>
+				</tr>
 			<?php endforeach;?>
-				</tbody>
 			</table>
 		<?php else: ?>
 			<center>
@@ -132,6 +127,14 @@
 			</div>
 			<a class="close-reveal-modal">&#215;</a>
 		</div>
+	</div>
+</section>
+<section>
+	<p class="title" data-section-title>
+		<a href="#images">Фотогалерея</a>
+	</p>
+	<div class="content" data-section-content>
+		Фотогалерея
 	</div>
 </section>
 </div>

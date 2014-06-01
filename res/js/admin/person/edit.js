@@ -166,42 +166,45 @@ $(document).ready(function() {
 					if (h4.length > 0) {
 						h4.closest('center').remove();
 						var table = '<table id="add_video_table">' +
-										'<thead>' +
-											'<tr id="head">' +
-												'<th>#</th>' +
-												'<th>Название</th>' +
-												'<th>Описание</th>' +
-												'<th>Дата добавления</th>' +
-												'<th></th>' +
-											'</tr>' +
-										'</thead>' +
 										'<tbody>' +
 											'<tr>' + 
-												 '<td>' + data.id + '</td>' +
-												 '<td>' + data.title + '</td>' +
-												 '<td>' + data.description + '</td>' +
-												 '<td>' + data.date + '</td>' +
-												 '<td>' + data.youtube + '</td>' +
+												'<td rowspan="4">' + data.youtube + '</td>' +
+												'<td><b>ID: </b>' + data.id + '</td>' +
 											'</tr>' +
+											'<tr>' +
+												'<td class="youtube"><b>Название: </b>' + data.title + '</td>' +
+											'</tr>' +
+											'<tr>'+
+												'<td class="youtube"><b>Описание: </b>' + data.description + '</td>' +
+											'</tr>' +
+											'<tr>'+
+												'<td class="youtube"><b>Дата добавления: </b>' + data.date + '</td>' +
+										   '</tr>' +
 										'</tbody>' +
 									'</table>';
 						
-						table.insertBefore('#videoMain');
+						jQuery(table).insertBefore('div#videoMain');
 					} else {
 						var newtr = 
 							'<tr>' + 
-								 '<td>' + data.id + '</td>' +
-								 '<td>' + data.title + '</td>' +
-								 '<td>' + data.description + '</td>' +
-								 '<td>' + data.date + '</td>' +
-								 '<td>' + data.youtube + '</td>' +
+								 '<td rowspan="4">' + data.youtube + '</td>' +
+								 '<td><b>ID: </b>' + data.id + '</td>' +
+							'</tr>' +
+							'<tr>' +
+								 '<td class="youtube"><b>Название: </b>' + data.title + '</td>' +
+							'</tr>' +
+							'<tr>'+
+								 '<td class="youtube"><b>Описание: </b>' + data.description + '</td>' +
+							'</tr>' +
+							'<tr>'+
+								 '<td class="youtube"><b>Дата добавления: </b>' + data.date + '</td>' +
 							'</tr>';
 						$('table#add_video_table').append(newtr);
 					}
 				},
 			error:
 				function() {
-					alert('Все плохо');
+					alert('Что-то пошло не так! /n Проверьте правильность введенных данных!');
 				}
 		});
 	});

@@ -17,3 +17,10 @@ fieldset {
 form#post_edit.custom{
 	width: 970px;
 }
+
+table#add_video_table {
+    width: 950px;
+}
+.youtube {
+    width: 740px !important;
+}
