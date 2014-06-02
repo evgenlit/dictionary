@@ -72,10 +72,14 @@ class Controller_Admin_Person extends Controller_Admin {
 		
 		$videos = ORM::factory('Video')->where('person_id', '=', $id)->find_all();
 		
-		
-		
+		$images = ORM::factory('Photo')
+						->where('person_id', '=', $id)
+						->and_where('main', 'IS', NULL)
+						->find_all();
+//		var_dump($images); die;
 		$data['person'] = $person;
 		$data['videos'] = $videos;
+		$data['images'] = $images;
 		$this->setData($data);
 		$this->render();
 		

@@ -3,6 +3,11 @@ img {
 	max-width: 100px;
 }
 
+img {
+	height: 165px;
+	max-width: 229px;
+}
+
 table {
 	border: 0px !important;
 }
