@@ -142,8 +142,7 @@
 				<div class="col-lg-7">
 					<!-- The fileinput-button span is used to style the file input field as button -->
 					<span class="btn btn-success fileinput-button">
-						<i class="glyphicon glyphicon-plus"></i>
-						<span>Add files...</span>
+						<span>Добавить</span>
 						<input type="file" name="files[]" multiple>
 					</span>
 					<button type="submit" class="btn btn-primary start">
