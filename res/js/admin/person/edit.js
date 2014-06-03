@@ -210,44 +210,106 @@ $(document).ready(function() {
 	});
 });
 
-$(document).ready(function() {
-	
-	function showThumbnails(){
-		var files= document.getElementById('file').files;
-		$('#previewPane').html('');
-		for(var i=0;i<files.length;i++){
-			var file=files[i];
-			var image = document.createElement("img");
-			$('#previewPane').append('<li id="photo' + i + '">');
-			$('#photo' +i).append(image);
-			$('#photo' +i).append('<div id="progress'+ i +'" class="progress large-12 medium-12 success round"><span class="meter" style="width: 0%"></span></div>');
-			var fileReader= new FileReader();
-			fileReader.onload = (function(img) {
-				return function(e) {
-					img.src = e.target.result;
-				}; 
-			})(image);
-			fileReader.readAsDataURL(file);
-			uploadFile(file, i);
+function sendFileToServer(formData,status) {
+	var personId = $("input#person").val();
+	alert(personId);
+    var uploadURL ="/admin/photo/jupload"+personId; //Upload URL
+    var extraData ={}; //Extra Data.
+    var jqXHR=$.ajax({
+		url: uploadURL,
+		type: "POST",
+		contentType:false,
+		processData: false,
+		cache: false,
+		data: formData,
+		success: function(data){
+			      
 		}
+    }); 
+ 
+    status.setAbort(jqXHR);
+};
+ 
+var rowCount=0;
+function createStatusbar(obj) {
+	rowCount++;
+	var row="odd";
+	if(rowCount %2 === 0) row ="even";
+	this.statusbar = $("<div class='statusbar "+row+"'></div>");
+	this.filename = $("<div class='filename'></div>").appendTo(this.statusbar);
+	this.size = $("<div class='filesize'></div>").appendTo(this.statusbar);
+	this.progressBar = $("<div class='progressBar'><div></div></div>").appendTo(this.statusbar);
+	this.abort = $("<div class='abort'>Abort</div>").appendTo(this.statusbar);
+	obj.after(this.statusbar);
+
+	this.setFileNameSize = function(name,size) {
+	   var sizeStr="";
+	   var sizeKB = size/1024;
+	   if(parseInt(sizeKB) > 1024) {
+		   var sizeMB = sizeKB/1024;
+		   sizeStr = sizeMB.toFixed(2)+" MB";
+	   } else {
+		   sizeStr = sizeKB.toFixed(2)+" KB";
+	   }
+
+	   this.filename.html(name);
+	   this.size.html(sizeStr);
 	};
-	
-	function uploadFile(file, i){
-		var xhr = new XMLHttpRequest(); 
-		var formData = new FormData();
-		formData.append('file',file);
-		xhr.upload.addEventListener("progress", function(e) {
-			if (e.lengthComputable) { 
-				var percentage = Math.round((e.loaded * 100) / e.total); 
-				$("#progress" + i).html('<span class="meter" style="width: '+ percentage +'%"></span>');
-			}
-		}, false);
-		xhr.upload.addEventListener("load", function(e){
-			$("#progress" + i).html('<span class="meter" style="width: 100%"></span>');;
-		}, false);
-		xhr.open("POST", "upload.php"); 
-		xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
-		xhr.send(formData);
+	this.setProgress = function(progress) {       
+	   var progressBarWidth =progress*this.progressBar.width()/ 100;  
+	   this.progressBar.find('div').animate({ width: progressBarWidth }, 10).html(progress + "% ");
+	   if(parseInt(progress) >= 100) {
+		   this.abort.hide();
+	   }
 	};
-	
+	this.setAbort = function(jqxhr) {
+	   var sb = this.statusbar;
+	   this.abort.click(function() {
+		   jqxhr.abort();
+		   sb.hide();
+	   });
+	};
+};
+function handleFileUpload(files,obj){
+   for (var i = 0; i < files.length; i++) {
+        var fd = new FormData();
+        fd.append('file', files[i]);
+ 
+        var status = new createStatusbar(obj); //Using this we can set progress.
+        status.setFileNameSize(files[i].name,files[i].size);
+        sendFileToServer(fd,status);
+ 
+   }
+};
+$(document).ready(function() {
+	var obj = $("#dragandrophandler");
+	obj.on('dragenter', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		$(this).css('border', '2px solid #0B85A1');
+	});
+	obj.on('dragover', function (e) {
+		 e.stopPropagation();
+		 e.preventDefault();
+	});
+	obj.on('drop', function (e) {
+		 $(this).css('border', '2px dotted #0B85A1');
+		 e.preventDefault();
+		 var files = e.originalEvent.dataTransfer.files;
+		 handleFileUpload(files,obj);
+	});
+	$(document).on('dragenter', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+	});
+	$(document).on('dragover', function (e) {
+	  e.stopPropagation();
+	  e.preventDefault();
+	  obj.css('border', '2px dotted #0B85A1');
+	});
+	$(document).on('drop', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+	});
+ 
 });

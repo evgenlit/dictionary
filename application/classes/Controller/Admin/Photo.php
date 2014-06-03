@@ -63,4 +63,30 @@ class Controller_Admin_Photo extends Controller_Admin {
 		$this->render();
 	}
 	
+	public function action_jupload() {
+		$id = $this->request->param('p1');
+		if (null == $id) {
+			throw new Exception('Не указан идентификатор персоналии.');
+		}
+		if ($_FILES) {
+			$photo = ORM::factory('Photo');
+			$result = $photo->upload();
+			if ($result !== false){
+				$photo->validationRequired(false);
+				$photo->title = 'gallery'.$id;
+				$photo->description = 'Фото из галереи';
+				$photo->setPath($result['new_path']);
+				$photo->setName($result['name']);
+				$photo->setPersonId($id);
+				$photo->main = NULL;
+				$photo->save();
+				$this->setData(array(
+				   'id' => $photo->getId() 
+				));
+			}
+		}
+
+		$this->render();
+    }
+	
 }
