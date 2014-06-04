@@ -213,7 +213,7 @@ $(document).ready(function() {
 function sendFileToServer(formData) {
 	var personId = $("input#person").val();
 //	alert(personId);
-    var uploadURL ="/admin/photo/jupload/"+personId; //Upload URL
+    var uploadURL ="/admin/photo/jupload/"+personId;
     var jqXHR=$.ajax({
 		url: uploadURL,
 		type: "POST",
@@ -223,7 +223,37 @@ function sendFileToServer(formData) {
 		data: formData,
 		dataType: "json",
 		success: function(data){
-			alert(data);
+			var h4 = $('h4#noimages');
+			if (h4.length > 0) {
+				h4.closest('center').remove();
+				var i = 0;
+				var table1 = '<table id="resultPhotos">' +
+								'<tbody>' +
+								'</tbody>' +
+							'</table>';
+				var tr = '<tr></tr>';
+				$.each(data, function(key, value){
+					i++;
+					if(i === 5) {
+						var tr2 = '<tr></tr>';
+						var td2 = 		'<td id="countPhotos">' +
+											'<img id="simpleImage" src="/res/upload/photos/' + value + '">' + 
+										'</td>';
+						tr2.append(td2);
+						i=0;
+					}
+					var td = 		'<td id="countPhotos">' +
+										'<img id="simpleImage" src="/res/upload/photos/' + value + '">' + 
+									'</td>';
+					tr.append(td);	
+										
+				});
+				table1.append(tr);
+				jQuery(table1).insertAfter('div#dragandrophandler');
+				
+				
+				
+			}
 		}
     });
 };

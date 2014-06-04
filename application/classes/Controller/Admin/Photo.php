@@ -84,9 +84,7 @@ class Controller_Admin_Photo extends Controller_Admin {
 					
 					$this->setData(
 						array(
-							'id' => array(
-							   $photo->getId() => $photo->getName()
-							)
+							$photo->getId() => $photo->getName()
 						)
 					);
 				}

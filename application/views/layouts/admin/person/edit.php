@@ -143,7 +143,7 @@
 					<tr>
 				<?php foreach($images as $img): ?>
 					<?php $i++; ?>
-						<td>
+						<td id="countPhotos">
 							<?= HTML::image('/res/upload/photos/' . $img->getName(), array('id' => 'simpleImage')) ?>
 						</td>
 						<?php if($i == 4): ?>
