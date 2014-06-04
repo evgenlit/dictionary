@@ -70,19 +70,26 @@ class Controller_Admin_Photo extends Controller_Admin {
 		}
 		if ($_FILES) {
 			$photo = ORM::factory('Photo');
-			$result = $photo->upload();
-			if ($result !== false){
-				$photo->validationRequired(false);
-				$photo->title = 'gallery'.$id;
-				$photo->description = 'Фото из галереи';
-				$photo->setPath($result['new_path']);
-				$photo->setName($result['name']);
-				$photo->setPersonId($id);
-				$photo->main = NULL;
-				$photo->save();
-				$this->setData(array(
-				   'id' => $photo->getId() 
-				));
+			foreach ($_FILES as $file) {
+				$result = $photo->upload();
+				if ($result !== false){
+					$photo->validationRequired(false);
+					$photo->title = 'gallery'.$id;
+					$photo->description = 'Фото из галереи';
+					$photo->setPath($result['new_path']);
+					$photo->setName($result['name']);
+					$photo->setPersonId($id);
+					$photo->main = NULL;
+					$photo->save();
+					
+					$this->setData(
+						array(
+							'id' => array(
+							   $photo->getId() => $photo->getName()
+							)
+						)
+					);
+				}
 			}
 		}
 

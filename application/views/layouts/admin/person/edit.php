@@ -134,7 +134,7 @@
 		<a href="#images">Фотогалерея</a>
 	</p>
 	<div class="content" data-section-content>
-		<input type="hidden" id="person" valuu="<?= $person->getId() ?>">
+		<input type="hidden" id="person" value="<?= $person->getId() ?>">
 		<div id="dragandrophandler">Перетащите файлы в эту область</div>
 		<?php if (count($images) > 0): ?>
 			<?php $i = 0; ?>
