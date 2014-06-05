@@ -92,4 +92,24 @@ class Controller_Admin_Photo extends Controller_Admin {
 		$this->render();
     }
 	
+	public function action_jgetphotos() {
+		$id = $this->request->param('p1');
+		if (null == $id) {
+			throw new Exception('Не указан идентификатор персоналии.');
+		}
+		$images = ORM::factory('Photo')
+						->where('person_id', '=', $id)
+						->and_where('main', 'IS', NULL)
+						->find_all();
+		$result = array();
+		foreach ($images as $image) {
+			$result[] = array(
+				'id'	=> $image->getId(),
+				'name'	=> $image->getName()
+			);
+		}
+		$this->setData($result);
+		$this->render();
+	}
+	
 }

@@ -226,7 +226,7 @@ function sendFileToServer(formData,status) {
                             percent = Math.ceil(position / total * 100);
                         }
                         //Set progress
-                        status.setProgress(percent);
+//                        status.setProgress(percent);
                     }, false);
                 }
             return xhrobj;
@@ -238,12 +238,16 @@ function sendFileToServer(formData,status) {
         cache: false,
         data: formData,
         dataType: "json",
-        success: function(data){
-            status.setProgress(100);
-        }
-    }); 
+		success: function(data){
+			$.getJSON("/admin/photo/jgetphotos/"+personId, function(data) {
+				var div = ('<div></div>').addClass('resultPhotos');
+					div.attr('style', 'width: 966px; height: 179px');
+				jQuery(table).insertAfter('div#dragandrophandler');
+			});
+		}
+	}); 
  
-    status.setAbort(jqXHR);
+//    status.setAbort(jqXHR);
 };
  
 var rowCount=0;
@@ -291,9 +295,9 @@ function handleFileUpload(files,obj){
         var fd = new FormData();
         fd.append('file', files[i]);
  
-        var status = new createStatusbar(obj); //Using this we can set progress.
-        status.setFileNameSize(files[i].name,files[i].size);
-        sendFileToServer(fd,status);
+//        var status = new createStatusbar(obj); //Using this we can set progress.
+//        status.setFileNameSize(files[i].name,files[i].size);
+        sendFileToServer(fd);
  
    }
 };
