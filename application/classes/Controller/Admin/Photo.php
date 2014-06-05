@@ -69,8 +69,9 @@ class Controller_Admin_Photo extends Controller_Admin {
 			throw new Exception('Не указан идентификатор персоналии.');
 		}
 		if ($_FILES) {
+			$data = array();
 			$photo = ORM::factory('Photo');
-			foreach ($_FILES as $file) {
+//			foreach ($_FILES as $file) {
 				$result = $photo->upload();
 				if ($result !== false){
 					$photo->validationRequired(false);
@@ -81,14 +82,11 @@ class Controller_Admin_Photo extends Controller_Admin {
 					$photo->setPersonId($id);
 					$photo->main = NULL;
 					$photo->save();
-					
-					$this->setData(
-						array(
-							$photo->getId() => $photo->getName()
-						)
-					);
+					$data[$photo->getId()] = $photo->getName();
+//					var_dump($data); die;
+					$this->setData($data);
 				}
-			}
+//			}
 		}
 
 		$this->render();

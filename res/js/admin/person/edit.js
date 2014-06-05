@@ -210,59 +210,90 @@ $(document).ready(function() {
 	});
 });
 
-function sendFileToServer(formData) {
-	var personId = $("input#person").val();
-//	alert(personId);
-    var uploadURL ="/admin/photo/jupload/"+personId;
+function sendFileToServer(formData,status) {
+	var personId = $('#person').val();
+    var uploadURL ="/admin/photo/jupload/"+personId; //Upload URL
+    var extraData ={}; //Extra Data.
     var jqXHR=$.ajax({
-		url: uploadURL,
-		type: "POST",
-		contentType:false,
-		processData: false,
-		cache: false,
-		data: formData,
-		dataType: "json",
-		success: function(data){
-			var h4 = $('h4#noimages');
-			if (h4.length > 0) {
-				h4.closest('center').remove();
-				var i = 0;
-				var table1 = '<table id="resultPhotos">' +
-								'<tbody>' +
-								'</tbody>' +
-							'</table>';
-				var tr = '<tr></tr>';
-				$.each(data, function(key, value){
-					i++;
-					if(i === 5) {
-						var tr2 = '<tr></tr>';
-						var td2 = 		'<td id="countPhotos">' +
-											'<img id="simpleImage" src="/res/upload/photos/' + value + '">' + 
-										'</td>';
-						tr2.append(td2);
-						i=0;
-					}
-					var td = 		'<td id="countPhotos">' +
-										'<img id="simpleImage" src="/res/upload/photos/' + value + '">' + 
-									'</td>';
-					tr.append(td);	
-										
-				});
-				table1.append(tr);
-				jQuery(table1).insertAfter('div#dragandrophandler');
-				
-				
-				
-			}
-		}
-    });
+		xhr: function() {
+            var xhrobj = $.ajaxSettings.xhr();
+            if (xhrobj.upload) {
+                    xhrobj.upload.addEventListener('progress', function(event) {
+                        var percent = 0;
+                        var position = event.loaded || event.position;
+                        var total = event.total;
+                        if (event.lengthComputable) {
+                            percent = Math.ceil(position / total * 100);
+                        }
+                        //Set progress
+                        status.setProgress(percent);
+                    }, false);
+                }
+            return xhrobj;
+        },
+    url: uploadURL,
+    type: "POST",
+    contentType:false,
+    processData: false,
+        cache: false,
+        data: formData,
+        dataType: "json",
+        success: function(data){
+            status.setProgress(100);
+        }
+    }); 
+ 
+    status.setAbort(jqXHR);
 };
+ 
+var rowCount=0;
+function createStatusbar(obj) {
+	rowCount++;
+	var row="odd";
+	if(rowCount %2 === 0) row ="even";
+	this.statusbar = $("<div class='statusbar "+row+"'></div>");
+	this.filename = $("<div class='filename'></div>").appendTo(this.statusbar);
+	this.size = $("<div class='filesize'></div>").appendTo(this.statusbar);
+	this.progressBar = $("<div class='progressBar'><div></div></div>").appendTo(this.statusbar);
+	this.abort = $("<div class='abort'>Abort</div>").appendTo(this.statusbar);
+	obj.after(this.statusbar);
 
+	this.setFileNameSize = function(name,size) {
+	   var sizeStr="";
+	   var sizeKB = size/1024;
+	   if(parseInt(sizeKB) > 1024) {
+		   var sizeMB = sizeKB/1024;
+		   sizeStr = sizeMB.toFixed(2)+" MB";
+	   } else {
+		   sizeStr = sizeKB.toFixed(2)+" KB";
+	   }
+
+	   this.filename.html(name);
+	   this.size.html(sizeStr);
+	};
+	this.setProgress = function(progress) {       
+	   var progressBarWidth =progress*this.progressBar.width()/ 100;  
+	   this.progressBar.find('div').animate({ width: progressBarWidth }, 10).html(progress + "% ");
+	   if(parseInt(progress) >= 100) {
+		   this.abort.hide();
+	   }
+	};
+	this.setAbort = function(jqxhr) {
+	   var sb = this.statusbar;
+	   this.abort.click(function() {
+		   jqxhr.abort();
+		   sb.hide();
+	   });
+	};
+};
 function handleFileUpload(files,obj){
    for (var i = 0; i < files.length; i++) {
         var fd = new FormData();
         fd.append('file', files[i]);
-        sendFileToServer(fd);
+ 
+        var status = new createStatusbar(obj); //Using this we can set progress.
+        status.setFileNameSize(files[i].name,files[i].size);
+        sendFileToServer(fd,status);
  
    }
 };
