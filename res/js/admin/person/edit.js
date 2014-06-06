@@ -240,9 +240,19 @@ function sendFileToServer(formData,status) {
         dataType: "json",
 		success: function(data){
 			$.getJSON("/admin/photo/jgetphotos/"+personId, function(data) {
-				var div = ('<div></div>').addClass('resultPhotos');
-					div.attr('style', 'width: 966px; height: 179px');
-				jQuery(table).insertAfter('div#dragandrophandler');
+				var h4 = $('h4#noimages');
+				if(h4.length > 0) {
+					h4.closest('center').remove();
+					var div = $('<div></div>').addClass('resultPhotos');
+						div.attr('style', 'margin 0 auto;');
+						for (var i = 0; i < data.length; i++) {
+							var img = $('<img src="/res/upload/photos/' + data[i].name + '" />');
+								img.attr('style', 'width: auto, height: auto;');
+							div.append(img);
+							
+						}
+					div.insertAfter('div#dragandrophandler');
+				}
 			});
 		}
 	}); 
