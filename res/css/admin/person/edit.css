@@ -26,6 +26,9 @@ form#post_edit.custom{
 table#add_video_table {
     width: 950px;
 }
+td#countPhotos {
+	text-align: center;
+}
 .youtube {
     width: 740px !important;
 }

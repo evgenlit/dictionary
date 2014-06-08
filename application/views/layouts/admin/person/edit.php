@@ -29,10 +29,10 @@
 		<form class='custom' method="POST" enctype="multipart/form-data" id="post_edit" name="post_edit" width="100px">
 			<fieldset>
 				<label for="name" id="formlabel">ФИО (полностью)</label>
-				<input type='text' name='name' id='name' value="<?= $person->getName() ?>" data-edit="auto" data-save="" />
+				<input type='text' name='name' id='name' value="<?= $person->getName() ?>" data-edit="auto" data-id="<?= $person->getId() ?>" data-save="/admin/person/save" />
 				
 				<label for="years" id="formlabel">Годы жизни</label>
-				<input type='text' name='years' id='years' value="<?= $person->getYears() ?>" data-edit="auto" data-save="" />
+				<input type='text' name='years' id='years' value="<?= $person->getYears() ?>" data-edit="auto" data-id="<?= $person->getId() ?>" data-save="/admin/person/save" />
 				
 				<label for="epigraph" id="formlabel">Эпиграф</label>
 				<textarea class="ckeditor" name="epigraph" id="epigraph"><?= $person->getEpigraph() ?></textarea>

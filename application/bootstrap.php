@@ -150,6 +150,13 @@ Route::set('admin', 'admin(/<controller>(/<action>(/<p1>)))', array('p1' => '.*'
             'action' => 'index'
         ));
 
+Route::set('user', 'user(/<controller>(/<action>(/<p1>)))', array('p1' => '.*'))
+        ->defaults(array(
+			'directory' => 'user',
+            'controller' => 'index',
+            'action' => 'index'
+        ));
+
 Route::set('default', '(<controller>(/<action>(/<p1>)))')
 	->defaults(array(
             'controller' => 'index',

@@ -1,4 +1,4 @@
-$(function() {
+$(document).ready(function() {
 	$('body').on('change', '[data-edit="auto"]', 
 	function(e) {
 		var $this = $(this);
@@ -11,7 +11,7 @@ $(function() {
 			btn.addClass('round button');
 			btn.addClass('small');
 			btn.addClass('btn-autosave');
-			btn.data('loading-text', 'Сохраняю...');
+			btn.data('loading-text', 'Сохранение...');
 			btn.html('Сохранить');
 			btn.on('click', function() {
 				$.ajax({
@@ -21,10 +21,10 @@ $(function() {
 						field: $this.attr('name'),
 						value: value
 					},
-					beforeSend: function() {
-						btn.removeClass('btn-info');
-						btn.button('loading');
-					},
+//					beforeSend: function() {
+//						btn.removeClass('btn-info');
+//						btn.button('loading');
+//					},
 					success: function() {
 						btn.remove();
 					},
@@ -244,13 +244,27 @@ function sendFileToServer(formData,status) {
 				if(h4.length > 0) {
 					h4.closest('center').remove();
 					var div = $('<div></div>').addClass('resultPhotos');
-						div.attr('style', 'margin 0 auto;');
+						div.attr('style', 'margin: 10px auto;');
 						for (var i = 0; i < data.length; i++) {
 							var img = $('<img src="/res/upload/photos/' + data[i].name + '" />');
-								img.attr('style', 'width: auto, height: auto;');
+								img.attr('id', 'galleryPhoto');
+								img.attr('style', 'width: auto; height: auto; margin: 5px;');
 							div.append(img);
-							
 						}
+					div.insertAfter('div#dragandrophandler');
+				} else {
+					var div1 = $('div.resultPhotos');
+					div1.remove();
+					var table = $('table#images_table');
+					table.remove();
+					var div = $('<div></div>').addClass('resultPhotos');
+						div.attr('style', 'margin: 10px auto;');
+					for (var i = 0; i < data.length; i++) {
+						var img = $('<img src="/res/upload/photos/' + data[i].name + '" />');
+							img.attr('id', 'galleryPhoto');
+							img.attr('style', 'width: auto; height: auto; margin: 5px;');
+						div.append(img);
+					}
 					div.insertAfter('div#dragandrophandler');
 				}
 			});

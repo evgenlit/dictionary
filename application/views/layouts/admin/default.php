@@ -66,7 +66,7 @@
                         </ul>
                         
                         
-                        <ul class="left">
+<!--                        <ul class="left">
                             <li class="divider"></li>
                             <li class='has-dropdown'><a href="#">Фото</a>
                                 <ul class="dropdown">
@@ -84,7 +84,7 @@
 									<li><a href="/admin/video/">Список</a>
 									<li><a href="/admin/video/add/">Загрузка видео</a></li>
 								</ul>
-						</ul>
+						</ul>-->
 
 
                         <ul class="right">

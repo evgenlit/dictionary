@@ -14,7 +14,7 @@ class Controller_Admin_Person extends Controller_Admin {
         $this->render();
     }
 
-    public function action_add() {       
+    public function action_add() {
 		$data = array();
         if ($_POST) {
             $data = $this->getPost();
@@ -105,6 +105,14 @@ class Controller_Admin_Person extends Controller_Admin {
 		} catch(Database_Exception $e) {
 			$db->rollback();
 		}
+		
+	}
+	
+	public function action_save() {
+		$data = $this->request->query();
+		$person = ORM::factory('Person', $data['id']);
+		$person->$data['field'] = $data['value'];
+		$person->save();
 		
 	}
 	
