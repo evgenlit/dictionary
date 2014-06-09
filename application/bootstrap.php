@@ -159,8 +159,9 @@ Route::set('user', 'user(/<controller>(/<action>(/<p1>)))', array('p1' => '.*'))
 
 Route::set('default', '(<controller>(/<action>(/<p1>)))')
 	->defaults(array(
+            'directory' => 'user',
             'controller' => 'index',
-            'action'     => 'index',
+            'action' => 'index'
 	));
 
 
