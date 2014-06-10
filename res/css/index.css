@@ -1,4 +1,4 @@
-#main { 
+/*#main { 
 	width: 200px;
 	background: #FFD324;
 	padding: 5px;
@@ -14,28 +14,37 @@ body {
 }
 
 .header, .sidebar, .content, .footer { 
-	padding: 10px; /* Поля */
-	border: solid 1px #000; /* Параметры рамки */
-/*	background: #e3e8cc;  Цвет фона */
+	padding: 10px;  Поля 
+	border: solid 1px #000;  Параметры рамки 
+	background: #e3e8cc;  Цвет фона 
 }
-.header { /* Верхняя часть с заголовком */
-/*	background: #e3e8cc;  Цвет фона */
-	font-size: 24px; /* Размер шрифта */
+.header {  Верхняя часть с заголовком 
+	background: #e3e8cc;  Цвет фона 
+	font-size: 24px;  Размер шрифта 
 }
 .layout {
-	margin: 15px 0; /* Отступы сверху и снизу */ 
-	overflow: hidden; /* Отменяем действие float */
-	min-width: 800px; /* Минимальная ширина */
-	max-width: 1200px; /* Максимальная ширина */
+	margin: 15px 0;  Отступы сверху и снизу  
+	overflow: hidden;  Отменяем действие float 
+	min-width: 800px;  Минимальная ширина 
+	max-width: 1200px;  Максимальная ширина 
 }
-.sidebar { /* Навигация по сайту */
-	width: 100px; /* Ширина меню */
-	float: left; /* Состыковка с другим слоем по горизонтали */
+.sidebar {  Навигация по сайту 
+	width: 100px;  Ширина меню 
+	float: left;  Состыковка с другим слоем по горизонтали 
 }
 .sidebar ul {
-	list-style: none; /* Убираем маркеры */
-	padding: 0; /* Убираем отступы */
+	list-style: none;  Убираем маркеры 
+	padding: 0;  Убираем отступы 
 }
-.content { /* Основное содержание страницы */
-	margin-left: 135px; /* Отступ слева */
+.content {  Основное содержание страницы 
+	margin-left: 135px;  Отступ слева 
+}
+img#picture {
+	margin: 0 0 0 50%;
+	position: relative;
+}*/
+
+body {
+	margin-left:20%;
+	margin-right:20%;
 }

@@ -9,7 +9,9 @@
 		<?php endif; ?>
     </head>
     <body>
-	<div class="header">Заголовок сайта</div>
+	<div class="header">
+		<img id="picture" src="/res/main.jpg" width="810" height="200" />
+	</div>
 		<div class="sidebar">
 			<h2>Меню</h2>
 			<ul>
