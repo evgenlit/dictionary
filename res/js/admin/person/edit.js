@@ -142,6 +142,42 @@ $(document).ready(function(){
 				}
 		});
 	});
+	
+	CKEDITOR.replace('proceedings');
+	var editor2 = CKEDITOR.instances.proceedings;
+	editor2.on('blur', function(event) {
+		var personId = $("input#personId").val();
+		var value2 = editor2.getData();
+		var upurl2 = "/admin/person/jeditProceedings/"+personId;
+		$.ajax({
+			url: upurl2,
+			type: "POST",
+			data: {value: value2},
+			cache: false,
+			dataType: "html",
+			success:
+				function(){
+					editor2.document.getBody()
+					.setStyles({
+						backgroundColor: '#00ff00',
+						transitionTimingFunction: 'linear',
+						animationDuration: '10s'
+					});
+					CKEDITOR.tools.setTimeout(function(){
+						editor2.document.getBody()
+						.setStyles({
+						backgroundColor: '#ffffff',
+						transitionTimingFunction: 'linear',
+						animationDuration: '10s'
+					});
+					}, 1000 );
+				},
+			error:
+				function() {
+					alert('Все плохо');
+				}
+		});
+	});
 });
 
 $(document).ready(function() {
@@ -248,7 +284,7 @@ function sendFileToServer(formData,status) {
 						for (var i = 0; i < data.length; i++) {
 							var img = $('<img src="/res/upload/photos/' + data[i].name + '" />');
 								img.attr('id', 'galleryPhoto');
-								img.attr('style', 'width: auto; height: auto; margin: 5px;');
+								img.attr('style', 'max-width: 200px; height: 215px; margin: 15px; text-align: center;');
 							div.append(img);
 						}
 					div.insertAfter('div#dragandrophandler');
@@ -262,7 +298,7 @@ function sendFileToServer(formData,status) {
 					for (var i = 0; i < data.length; i++) {
 						var img = $('<img src="/res/upload/photos/' + data[i].name + '" />');
 							img.attr('id', 'galleryPhoto');
-							img.attr('style', 'width: auto; height: auto; margin: 5px;');
+							img.attr('style', 'max-width: 200px; height: 215px; margin: 15px; text-align: center;');
 						div.append(img);
 					}
 					div.insertAfter('div#dragandrophandler');

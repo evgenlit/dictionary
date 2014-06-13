@@ -26,7 +26,10 @@ class Model_Person extends ORM {
                 ),
                 'description' => array(
                     array('not_empty'),
-                    array('max_length', array(':value', 500)),
+                    array('max_length', array(':value', 50000)),
+                ),
+				'proceedings' => array(
+                    array('max_length', array(':value', 50000)),
                 )
             );
 		}

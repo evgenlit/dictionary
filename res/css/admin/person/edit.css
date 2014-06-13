@@ -2,8 +2,11 @@ img {
 	height: 70px;
 	max-width: 100px;
 }
-
-img {
+img#simpleImage {
+	height: 215px;
+	max-width: 200px;
+}
+img#mainPic {
 	height: 165px;
 	max-width: 229px;
 }

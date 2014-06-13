@@ -2,24 +2,37 @@
 
 defined('SYSPATH') OR die('No direct script access.');
 
-class Controller_User_Index extends Controller_Default {
-	public $template = 'layouts/user/index/index';
+class Controller_User_Index extends Controller_User {
+//	public $template = 'layouts/user/index/index';
 
 	public function action_index() {
-		$data = array();
-		$persons = ORM::factory('Person')->find_all();
-		$data['persons'] = $persons;
-		$this->setData($data);
 		$this->render();
 	}
 	
-	public function action_video() {
+	public function action_about() {
+		$this->render();
+	}
+	
+	public function action_info() {
+		$this->render();
+	}
+	
+	public function action_compilers() {
+		$this->render();
+	}
+	
+	public function action_persons() {
 		$data = array();
-		$video = ORM::factory('Video')->where('person_id', '=', 6)->find();
-		var_dump($video);
-		$data['video'] = $video;
-		$content = View::factory('/layouts/user/index/video')->render();
-		$this->response->body($content);
+		$persons = 
+				ORM::factory('Person')
+				->join('Photos')
+				->on('photos.person_id', '=', 'person.id')
+				->where('photos.main', '=', 1)
+				->find_all();
+//		var_dump($persons); die;
+		$data['persons'] = $persons;
+		$this->setData($data);
+		$this->render();
 	}
 
 }

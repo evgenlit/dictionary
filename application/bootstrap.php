@@ -145,15 +145,51 @@ Kohana::modules(array(
 
 Route::set('admin', 'admin(/<controller>(/<action>(/<p1>)))', array('p1' => '.*'))
         ->defaults(array(
-            'directory' => 'admin',
-            'controller' => 'index',
+            'directory' => 'Admin',
+            'controller' => 'Index',
             'action' => 'index'
         ));
 
 Route::set('index', '(/<controller>(/<action>(/<p1>)))', array('p1' => '.*'))
         ->defaults(array(
-            'controller' => 'index',
+			'directory' => 'User',
+            'controller' => 'Index',
             'action' => 'index'
+        ));
+
+Route::set('about', 'about(/<controller>(/<action>))')
+        ->defaults(array(
+			'directory' => 'User',
+            'controller' => 'Index',
+            'action' => 'about'
+        ));
+
+Route::set('info', 'info(/<controller>(/<action>))')
+        ->defaults(array(
+			'directory' => 'User',
+            'controller' => 'Index',
+            'action' => 'info'
+        ));
+
+Route::set('persons', 'persons(/<controller>(/<action>))')
+        ->defaults(array(
+			'directory' => 'User',
+            'controller' => 'Index',
+            'action' => 'persons'
+        ));
+
+Route::set('compilers', 'compilers(/<controller>(/<action>))')
+        ->defaults(array(
+			'directory' => 'User',
+            'controller' => 'Index',
+            'action' => 'compilers'
+        ));
+
+Route::set('user', 'user(/<controller>(/<action>(/<id>)))', array('id' => '.*'))
+        ->defaults(array(
+			'directory' => 'User',
+            'controller' => 'Person',
+            'action' => 'view'
         ));
 
 Route::set('default', '(<controller>(/<action>(/<p1>)))')

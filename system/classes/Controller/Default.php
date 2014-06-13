@@ -4,7 +4,7 @@ defined('SYSPATH') OR die('No direct script access.');
 
 abstract class Controller_Default extends Controller_Template {
 
-//    public $template = 'layouts/default';
+    public $template = 'layouts/user/default';
     protected $_user = null;
     protected $_data = array();
     protected $_controller = null;

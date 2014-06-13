@@ -26,7 +26,7 @@
 		<a href="#personal">Биографические данные</a>
 	</p>
 	<div class="content" data-section-content>
-		<form class='custom' method="POST" enctype="multipart/form-data" id="post_edit" name="post_edit" width="100px">
+		<form class='custom' method="POST" enctype="multipart/form-data" id="post_edit" name="post_edit" style="width: 970px;">
 			<fieldset>
 				<label for="name" id="formlabel">ФИО (полностью)</label>
 				<input type='text' name='name' id='name' value="<?= $person->getName() ?>" data-edit="auto" data-id="<?= $person->getId() ?>" data-save="/admin/person/save" />
@@ -73,7 +73,6 @@
 		<a href="#video">Видео</a>
 	</p>
 	<div class="content" data-section-content>
-		<?//php var_dump($videos); die; ?>
 		<?php if (count($videos) > 0): ?>
 			<table id="add_video_table">
 			<?php foreach($videos as $video): ?>
@@ -146,7 +145,7 @@
 						<td id="countPhotos">
 							<?= HTML::image('/res/upload/photos/' . $img->getName(), array('id' => 'simpleImage')) ?>
 						</td>
-						<?php if($i == 4): ?>
+						<?php if($i == 5): ?>
 					</tr>
 					<tr>
 							<?php $i = 0; ?>
@@ -160,6 +159,14 @@
 				<h4 id="noimages">Ничего не найдено</h4>
 			</center>
 		<?php endif; ?>
+	</div>
+</section>
+<section>
+	<p class="title" data-section-title>
+		<a href="#proceedings">Основные труды</a>
+	</p>
+	<div class="content" data-section-content>
+		<textarea class="ckeditor" name="proceedings" id="proceedings"><?= htmlspecialchars_decode($person->getProceedings(), ENT_QUOTES) ?></textarea>
 	</div>
 </section>
 </div>

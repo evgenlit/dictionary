@@ -22,8 +22,8 @@ class Controller_Admin_Person extends Controller_Admin {
 				$person = ORM::factory('Person');
 				$person->name = $data['name'];
 				$person->years = $data['years'];
-				$person->epigraph = HTML::entities($_POST['epigraph']);
-				$person->description = HTML::entities($_POST['description']);
+				$person->epigraph = $_POST['epigraph'];
+				$person->description = $_POST['description'];
 				$person->save();
 				$last_insert_id = $person->pk();
 				if ($_FILES) {
@@ -138,6 +138,20 @@ class Controller_Admin_Person extends Controller_Admin {
 		if ($_POST) {
 			$person = ORM::factory('Person', $id);
 			$person->description = $_POST['value'];
+			$person->save();
+		} else {
+			echo 'Все плохо!';
+		}
+	}
+	
+	public function action_jeditProceedings() {
+		$id = $this->request->param('p1');
+		if (null == $id) {
+			throw new Exception('Не указан идентификатор персоналии.');
+		}
+		if ($_POST) {
+			$person = ORM::factory('Person', $id);
+			$person->proceedings = $_POST['value'];
 			$person->save();
 		} else {
 			echo 'Все плохо!';

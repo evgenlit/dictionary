@@ -1,0 +1,64 @@
+img#mainPhoto {
+	height: 280px;
+	width: 230px;
+}
+img#simpleImage {
+	height: 215px;
+	max-width: 200px;
+	text-align: center;
+}
+table#photo_table {
+    width: 300px; /* Ширина таблицы */
+    margin: auto; /* Выравниваем таблицу по центру окна  */
+}
+table#photo_table td {
+	text-align: center; /* Выравниваем текст по центру ячейки */
+}
+table#video_table {
+    width: 300px; /* Ширина таблицы */
+    margin: auto; /* Выравниваем таблицу по центру окна  */
+}
+table#video_table td {
+	text-align: center; /* Выравниваем текст по центру ячейки */
+}
+td.epigraph {
+	padding: 0px 25px 0px 30px;
+}
+#tab2, #tab3, #tab4, #tab5 {position: fixed; }
+
+.menu1 > a,
+.menu1 #tab2:target ~ a:nth-of-type(1),
+.menu1 #tab3:target ~ a:nth-of-type(1),
+.menu1 #tab4:target ~ a:nth-of-type(1),
+.menu1 #tab5:target ~ a:nth-of-type(1),
+.menu1 > div { padding: 5px; border: 1px solid #5C1C00; }
+
+.menu1 > a { 
+	line-height: 28px; 
+/*	background: #5C1C00; */
+	text-decoration: none;
+	color: #5C1C00;
+	font-weight: bold;
+}
+
+#tab2,
+#tab3,
+#tab4,
+#tab5,
+.menu1 > div,
+.menu1 #tab2:target ~ div:nth-of-type(1),
+.menu1 #tab3:target ~ div:nth-of-type(1) {display: none; }
+.menu1 #tab4:target ~ div:nth-of-type(1) {display: none; }
+.menu1 #tab5:target ~ div:nth-of-type(1) {display: none; }
+
+.menu1 > div:nth-of-type(1),
+.menu1 #tab2:target ~ div:nth-of-type(2),
+.menu1 #tab3:target ~ div:nth-of-type(3) { display: block; }
+.menu1 #tab4:target ~ div:nth-of-type(4) { display: block; }
+.menu1 #tab5:target ~ div:nth-of-type(5) { display: block; }
+
+.menu1 > a:nth-of-type(1),
+.menu1 #tab2:target ~ a:nth-of-type(2),
+.menu1 #tab3:target ~ a:nth-of-type(3) { border-bottom: 2px solid #FFE4C4; }
+.menu1 #tab4:target ~ a:nth-of-type(4) { border-bottom: 2px solid #FFE4C4; }
+.menu1 #tab5:target ~ a:nth-of-type(5) { border-bottom: 2px solid #FFE4C4; }
