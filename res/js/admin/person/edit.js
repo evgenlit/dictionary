@@ -280,12 +280,19 @@ function sendFileToServer(formData,status) {
 				if(h4.length > 0) {
 					h4.closest('center').remove();
 					var div = $('<div></div>').addClass('resultPhotos');
-						div.attr('style', 'margin: 10px auto;');
+						div.attr('style', 'margin: 15px auto; text-align:center;');
 						for (var i = 0; i < data.length; i++) {
+							var obertkadiv = $('<div id="obertka"></div>');
+								obertkadiv.attr('style', 'position: relative; height: 209px; max-width: 181px; display: inline-block; margin: 0 10px 15px 10px;');
 							var img = $('<img src="/res/upload/photos/' + data[i].name + '" />');
-								img.attr('id', 'galleryPhoto');
-								img.attr('style', 'max-width: 200px; height: 215px; margin: 15px; text-align: center;');
-							div.append(img);
+								img.attr('class', 'galleryPhoto');
+								img.attr('id', data[i].id);
+								img.attr('style', 'height: 209px; max-width: 181px; text-align: center;');
+							var button = $('<a href="#" class="delete tiny radius button" id ="' + data[i].id + '" onclick="deleteimage('+ data[i].id + ');">Удалить</a>');
+								button.attr('style', 'width: 66px; position: absolute; top: 5%; right: 10px; line-height: 1px; text-align: right; -webkit-transform: translate(0, -5%); -ms-transform: translate(0, -5%); transform: translate(0, -5%);');
+							obertkadiv.append(img);
+							obertkadiv.append(button);
+							div.append(obertkadiv);
 						}
 					div.insertAfter('div#dragandrophandler');
 				} else {
@@ -294,12 +301,19 @@ function sendFileToServer(formData,status) {
 					var table = $('table#images_table');
 					table.remove();
 					var div = $('<div></div>').addClass('resultPhotos');
-						div.attr('style', 'margin: 10px auto;');
+						div.attr('style', 'margin: 15px auto; text-align:center;');
 					for (var i = 0; i < data.length; i++) {
+						var obertkadiv = $('<div id="obertka"></div>');
+							obertkadiv.attr('style', 'position: relative; height: 209px; max-width: 181px; display: inline-block; margin: 0 10px 15px 10px;');
 						var img = $('<img src="/res/upload/photos/' + data[i].name + '" />');
-							img.attr('id', 'galleryPhoto');
-							img.attr('style', 'max-width: 200px; height: 215px; margin: 15px; text-align: center;');
-						div.append(img);
+							img.attr('class', 'galleryPhoto');
+							img.attr('id', data[i].id);
+							img.attr('style', 'height: 209px; max-width: 181px; text-align: center;');
+						var button = $('<a href="#" class="delete tiny radius button" id ="' + data[i].id + '" onclick="deleteimage('+ data[i].id + ');">Удалить</a>');
+							button.attr('style', 'width: 66px; position: absolute; top: 5%; right: 10px; line-height: 1px; text-align: right; -webkit-transform: translate(0, -5%); -ms-transform: translate(0, -5%); transform: translate(0, -5%);');
+						obertkadiv.append(img);
+						obertkadiv.append(button);
+						div.append(obertkadiv);
 					}
 					div.insertAfter('div#dragandrophandler');
 				}
@@ -393,3 +407,48 @@ $(document).ready(function() {
 	});
  
 });
+
+
+function deleteimage(id){
+	var personId = $('#person').val();
+	var url = '/admin/photo/jdeletephoto/'+id;
+	$.ajax({
+		url: url,
+		type: "POST",
+		data: id,
+		contentType:false,
+		processData: false,
+		cache: false,
+		dataType: "json",
+		success:
+			function(data) {
+				$.getJSON("/admin/photo/jgetphotos/"+personId, function(data) {
+						var div1 = $('div.resultPhotos');
+						div1.remove();
+						var table = $('table#images_table');
+						table.remove();
+						if(data.length > 0) {
+							var div = $('<div></div>').addClass('resultPhotos');
+								div.attr('style', 'margin: 15px auto; text-align:center;');
+							for (var i = 0; i < data.length; i++) {
+								var obertkadiv = $('<div id="obertka"></div>');
+									obertkadiv.attr('style', 'position: relative; height: 209px; max-width: 181px; display: inline-block; margin: 0 10px 15px 10px;');
+								var img = $('<img src="/res/upload/photos/' + data[i].name + '" />');
+									img.attr('class', 'galleryPhoto');
+									img.attr('id', data[i].id);
+									img.attr('style', 'height: 209px; max-width: 181px; text-align: center;');
+								var button = $('<a href="#" class="delete tiny radius button" id ="' + data[i].id + '" onclick="deleteimage('+ data[i].id + ');">Удалить</a>');
+									button.attr('style', 'width: 66px; position: absolute; top: 5%; right: 10px; line-height: 1px; text-align: right; -webkit-transform: translate(0, -5%); -ms-transform: translate(0, -5%); transform: translate(0, -5%);');
+								obertkadiv.append(img);
+								obertkadiv.append(button);
+								div.append(obertkadiv);
+							}
+							div.insertAfter('div#dragandrophandler');
+						} else {
+							var center = $('<center><h4 id="noimages">Ничего не найдено</h4></center>');
+							center.insertAfter('div#dragandrophandler');
+						}
+				});
+			}
+	});
+};

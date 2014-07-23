@@ -69,6 +69,6 @@
 		<?php endif; ?>
 	</div>
 	<div>
-		<?= htmlspecialchars($person->getProceedings()) ?>
+		<?= $person->getProceedings() ?>
 	</div>
 </div>

@@ -142,8 +142,11 @@
 					<tr>
 				<?php foreach($images as $img): ?>
 					<?php $i++; ?>
-						<td id="countPhotos">
-							<?= HTML::image('/res/upload/photos/' . $img->getName(), array('id' => 'simpleImage')) ?>
+						<td class="countPhotos" id="<?= $img->getId() ?>">
+							<div id="obertka">
+								<?= HTML::image('/res/upload/photos/' . $img->getName(), array('class' => 'galleryPhoto', 'id' => $img->getId())) ?>
+								<a href='#' class="delete tiny radius button" id ="<?= $img->getId() ?>" onclick="deleteimage(<?= $img->getId() ?>);">Удалить</a>
+							</div>
 						</td>
 						<?php if($i == 5): ?>
 					</tr>

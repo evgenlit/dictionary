@@ -33,7 +33,7 @@ class Model_Photo extends ORM {
 	
 	public function upload() {
         if ($_FILES) {
-            if ($_FILES["file"]["size"] > 1024 * 76 * 1024) {
+            if ($_FILES["file"]["size"] > 1024 * 100 * 1024) {
                 return false;
             }
 

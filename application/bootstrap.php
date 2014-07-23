@@ -46,7 +46,7 @@ spl_autoload_register(array('Kohana', 'auto_load'));
  *
  * It is recommended to not enable this unless absolutely necessary.
  */
-//spl_autoload_register(array('Kohana', 'auto_load_lowercase'));
+spl_autoload_register(array('Kohana', 'auto_load_lowercase'));
 
 /**
  * Enable the Kohana auto-loader for unserialization.
@@ -86,7 +86,7 @@ if (isset($_SERVER['SERVER_PROTOCOL']))
 /**
  * не забыть поменять потом на PRODUCTION
  */
-Kohana::$environment = Kohana::DEVELOPMENT;
+Kohana::$environment = Kohana::PRODUCTION;
 
 if (isset($_SERVER['KOHANA_ENV']))
 {
@@ -145,50 +145,50 @@ Kohana::modules(array(
 
 Route::set('admin', 'admin(/<controller>(/<action>(/<p1>)))', array('p1' => '.*'))
         ->defaults(array(
-            'directory' => 'Admin',
-            'controller' => 'Index',
+            'directory' => 'admin',
+            'controller' => 'index',
             'action' => 'index'
         ));
 
 Route::set('index', '(/<controller>(/<action>(/<p1>)))', array('p1' => '.*'))
         ->defaults(array(
-			'directory' => 'User',
-            'controller' => 'Index',
+			'directory' => 'user',
+            'controller' => 'index',
             'action' => 'index'
         ));
 
 Route::set('about', 'about(/<controller>(/<action>))')
         ->defaults(array(
-			'directory' => 'User',
-            'controller' => 'Index',
+			'directory' => 'user',
+            'controller' => 'index',
             'action' => 'about'
         ));
 
 Route::set('info', 'info(/<controller>(/<action>))')
         ->defaults(array(
-			'directory' => 'User',
-            'controller' => 'Index',
+			'directory' => 'user',
+            'controller' => 'index',
             'action' => 'info'
         ));
 
 Route::set('persons', 'persons(/<controller>(/<action>))')
         ->defaults(array(
-			'directory' => 'User',
-            'controller' => 'Index',
+			'directory' => 'user',
+            'controller' => 'index',
             'action' => 'persons'
         ));
 
 Route::set('compilers', 'compilers(/<controller>(/<action>))')
         ->defaults(array(
-			'directory' => 'User',
-            'controller' => 'Index',
+			'directory' => 'user',
+            'controller' => 'index',
             'action' => 'compilers'
         ));
 
 Route::set('user', 'user(/<controller>(/<action>(/<id>)))', array('id' => '.*'))
         ->defaults(array(
-			'directory' => 'User',
-            'controller' => 'Person',
+			'directory' => 'user',
+            'controller' => 'person',
             'action' => 'view'
         ));
 

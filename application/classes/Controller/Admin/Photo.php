@@ -39,9 +39,9 @@ class Controller_Admin_Photo extends Controller_Admin {
 					'person_id'	=> $id,
 					'main'		=> 1
 				);
-				$mainPhoto = ORM::factory('Photo', $data);
+				$mainPhoto = ORM::factory('photo', $data);
 				$mainPhoto->delete();
-				$photo = ORM::factory('Photo');
+				$photo = ORM::factory('photo');
 				$result = $photo->upload();
 				if ($result !== false){
 					$photo->validationRequired(false);
@@ -70,7 +70,7 @@ class Controller_Admin_Photo extends Controller_Admin {
 		}
 		if ($_FILES) {
 			$data = array();
-			$photo = ORM::factory('Photo');
+			$photo = ORM::factory('photo');
 //			foreach ($_FILES as $file) {
 				$result = $photo->upload();
 				if ($result !== false){
@@ -97,7 +97,7 @@ class Controller_Admin_Photo extends Controller_Admin {
 		if (null == $id) {
 			throw new Exception('Не указан идентификатор персоналии.');
 		}
-		$images = ORM::factory('Photo')
+		$images = ORM::factory('photo')
 						->where('person_id', '=', $id)
 						->and_where('main', 'IS', NULL)
 						->find_all();
@@ -109,6 +109,17 @@ class Controller_Admin_Photo extends Controller_Admin {
 			);
 		}
 		$this->setData($result);
+		$this->render();
+	}
+	
+	public function action_jdeletephoto() {
+		$id = $this->request->param('p1');
+		if (null == $id) {
+			throw new Exception('Не указан идентификатор изображения.');
+		}
+//		$result = array();
+		$image = ORM::factory('photo', $id)->delete();
+//		$this->setData($result);
 		$this->render();
 	}
 	

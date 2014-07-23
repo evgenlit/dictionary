@@ -1,7 +1,7 @@
 <h3>Список персоналий</h3>
 <?php if (count($persons) > 0): ?>
 	<div class='small-8 large-8 columns'>
-	    <table width="700">
+	    <table width="900">
 	        <thead>
 	            <tr>
 	                <th>#</th>
@@ -25,9 +25,7 @@
 	                        <?= $person->getYears() ?>
 	                    </td>
 	                    <td>
-	                    	<img 
-	                    		src="/res/upload/photos/<?= $person->getPhotoName($person->getId()) ?>"
-	                    	/>
+	                    	<?= HTML::image('/res/upload/photos/' . $person->getPhotoName($person->getId())) ?>
 	                    </td>
 	                    <td>
 	                        <?= HTML::anchor('/admin/person/edit/' . $person->getId(), 'Редактировать'); ?>

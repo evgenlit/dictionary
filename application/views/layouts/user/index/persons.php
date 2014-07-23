@@ -10,14 +10,14 @@
 		<tbody>
 	<?php foreach ($persons as $person): ?>
 		<?php
-			$descr = preg_replace('/\s[^\s]+$/', '', substr($person->getDescription(), 0, 940));
+			$descr = preg_replace('/\s[^\s]+$/', '', substr(strip_tags($person->getDescription()), 0, 940));
 		?>
 			<tr>
 				<td rowspan="2"><?= HTML::image('/res/upload/photos/' . $person->getPhotoName($person->getId()), array('id' => 'mainPic')) ?></td>
 				<td><h3 id="name"><?= $person->getName() ?>&nbsp;&nbsp;&nbsp;(<?= $person->getYears() ?>)</h3></td>
 			</tr>
 			<tr>
-				<td><b><?= $descr ?>&nbsp;<a href="/user/person/view/<?= $person->getId() ?>">подробнее...</a></b></td>
+				<td><b><?= $descr ?>&nbsp;<?= HTML::anchor('/user/person/view/' . $person->getId(), 'подробнее...'); ?></a></b></td>
 			</tr>
 	<?php endforeach; ?>
 		</tbody>

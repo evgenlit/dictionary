@@ -6,7 +6,7 @@ class Controller_Admin_Video extends Controller_Admin {
 
     public function action_index() {
         $data = array();
-		$videos = ORM::factory('Video')->find_all();
+		$videos = ORM::factory('video')->find_all();
 		$data['videos'] = $videos;
 		
 		$this->setData($data);
@@ -22,7 +22,7 @@ class Controller_Admin_Video extends Controller_Admin {
 		
 		$id = $this->request->param('id');
 		$data = array();
-		$result = ORM::factory('Video')->find($id);
+		$result = ORM::factory('video')->find($id);
 		$data['video'] = $result;
 		$this->setData($data);
 		$this->render();
@@ -30,7 +30,7 @@ class Controller_Admin_Video extends Controller_Admin {
 
     public function action_jupload() {
         if ($_FILES) {
-            $video = ORM::factory('Video');
+            $video = ORM::factory('video');
             $result = $video->upload();
             if ($result !== false){
                 $video->validationRequired(false);
@@ -53,7 +53,7 @@ class Controller_Admin_Video extends Controller_Admin {
 		}
 		
 		if($_POST) {
-			$video = ORM::factory('Video');
+			$video = ORM::factory('video');
 			$video->title = $_POST['title'];
 			$video->description = $_POST['description'];
 			$video->youtube = $_POST['youtube'];

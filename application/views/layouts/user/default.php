@@ -91,7 +91,7 @@
         </head>
 		<body>
 			<div class="header">
-				<img id="picture" src="/res/main.jpg" width="810" height="200" />
+				<a href="/"><img id="picture" src="/res/main.jpg" width="810" height="200" /></a>
 			</div>
 			<div id="osnova">
 				<div id="obertka">

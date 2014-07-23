@@ -19,7 +19,7 @@ class Model_Person extends ORM {
             return array(
 				'name' => array(
                     array('not_empty'),
-                    array('max_length', array(':value', 50)),
+                    array('max_length', array(':value', 500)),
                 ),
                 'years' => array(
                     array('not_empty')

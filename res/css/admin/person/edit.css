@@ -2,19 +2,33 @@ img {
 	height: 70px;
 	max-width: 100px;
 }
-img#simpleImage {
-	height: 215px;
-	max-width: 200px;
+img.galleryPhoto {
+	height: 209px;
+	max-width: 181px;
 }
 img#mainPic {
 	height: 165px;
 	max-width: 229px;
 }
-
+#obertka {
+    position: relative;
+	height: 209px;
+	max-width: 181px;
+}
+a.delete {
+	width: 66px;
+    position: absolute;
+    top: 5%;
+    right: 15px;
+    line-height: 1px;
+    text-align: right;
+    -webkit-transform: translate(0, -5%);
+    -ms-transform: translate(0, -5%);
+    transform: translate(0, -5%);
+}
 table {
 	border: 0px !important;
 }
-
 #formlabel {
 	font-size: 18px;
 }
@@ -29,7 +43,7 @@ form#post_edit.custom{
 table#add_video_table {
     width: 950px;
 }
-td#countPhotos {
+td.countPhotos {
 	text-align: center;
 }
 .youtube {
